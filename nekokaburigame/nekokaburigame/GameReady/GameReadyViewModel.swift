@@ -9,8 +9,9 @@ import Foundation
 
 @MainActor
 class GameReadyViewModel: ObservableObject {
+    @Published var isGameReady = false
     
-    func aaa() {
-            // 次の画面にいくやつ
-        }
+    func startGame() {
+        isGameReady = true
     }
+}

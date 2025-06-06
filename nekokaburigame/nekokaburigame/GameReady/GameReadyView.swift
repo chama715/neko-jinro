@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GameReadyView: View {
+    @StateObject private var viewModel = GameReadyViewModel()
     var body: some View {
         ZStack {
             Image(.background)
@@ -23,7 +24,7 @@ struct GameReadyView: View {
                     .padding()
             
                 Button(action: {
-                    // 各自役職確認画面へ
+                    viewModel.startGame()
                 }) {
                     Text("OK")
                         .font(.title2)
@@ -33,6 +34,9 @@ struct GameReadyView: View {
                         .cornerRadius(12)
                         .padding(.horizontal)
                 }
+            }
+            .navigationDestination(isPresented: $viewModel.isGameReady) {
+                RoleCheckStartView()
             }
         }
     }

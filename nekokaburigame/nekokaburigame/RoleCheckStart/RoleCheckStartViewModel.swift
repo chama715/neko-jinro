@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+@MainActor
+class RoleCheckStartViewModel: ObservableObject {
+    @Published var isGoRoleCheck = false
+
+    func startGame() {
+        isGoRoleCheck = true
+    }
+}

@@ -7,12 +7,37 @@
 
 import SwiftUI
 
-struct GameReady: View {
+struct GameReadyView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Image(.background)
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+            
+            VStack(spacing: 20) {
+                
+                Text("夜がきました。\n各自役職を確認し\n夜のアクションを行ってください。")
+                    .font(.title3)
+                    .bold()
+                    .padding()
+            
+                Button(action: {
+                    // 各自役職確認画面へ
+                }) {
+                    Text("OK")
+                        .font(.title2)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    GameReady()
+    GameReadyView()
 }

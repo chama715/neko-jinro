@@ -7,12 +7,76 @@
 
 import SwiftUI
 
+// Viewプロトコルに準拠したPlayCountView構造体を定義。
 struct PlayCountView: View {
+    // viewModelをこの画面とがちゃんこというか、紐付けしている
+    @StateObject private var viewModel = PlayCountViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        // 縦方向のスクロールを可能にしている。
+        ScrollView {
+            VStack(spacing: 20) {
+                Text("プレイヤーの数を選んでください。")
+                
+                // viewModelのplayerCountとバインディングをしていて、3〜10の人数を+と-で管理できる。
+                Stepper(value: $viewModel.playerCount, in: 3...10) {
+                    // 上記で設定した人数を人という単位つきで表示する。
+                    Text("\(viewModel.playerCount)人")
+                        .font(.title)
+                        .foregroundColor(.black)
+                }
+                // プレイヤー数が変更されたら、名前の数も調整する。クラッシュしたから非同期処理にした。
+                .onChange(of: viewModel.playerCount) { _, _ in
+                    DispatchQueue.main.async {
+                        viewModel.adjustPlayerNameArray()
+                    }
+                }
+                
+                // Lazyは高速？
+                LazyVStack(spacing: 10) {
+                    ForEach(0..<viewModel.playerCount, id: \.self) { index in
+                        if index < viewModel.playerName.count {
+                            TextField("プレイヤー\(index + 1)", text: Binding(
+                                get: { viewModel.playerName[index] },
+                                set: { viewModel.playerName[index] = $0 }
+                            ))
+                            .textFieldStyle(.roundedBorder)
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
+                }
+                .frame(height: 250)
+                .frame(width: 350)
+                
+                .navigationDestination(isPresented: $viewModel.isGameReadyActive) {
+                    GameReadyView()
+                }
+                
+                Button(action: {
+                    viewModel.startGame()
+                }) {
+                    Text("START")
+                        .font(.title2)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                }
+            }
+        }
+        .padding()
+        .background(
+            Image(.background)
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+        )
     }
 }
+    
+    #Preview {
+        PlayCountView()
+    }
 
-#Preview {
-    PlayCountView()
-}

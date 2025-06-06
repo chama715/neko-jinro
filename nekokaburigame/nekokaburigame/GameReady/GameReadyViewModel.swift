@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+@MainActor
+class GameReadyViewModel: ObservableObject {
+    
+    func aaa() {
+            // 次の画面にいくやつ
+        }
+    }

@@ -12,7 +12,7 @@ struct NoraCatTextView: View {
 
     var body: some View {
         ZStack {
-            Image(.nikukyu)
+            Image(.background)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
@@ -20,18 +20,18 @@ struct NoraCatTextView: View {
             VStack(spacing: 30) {
                 Text("あなたの役職は「野良猫」です。")
                     .font(.title2)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding()
 
-                Text("猫たちを見つけ出しましょう！")
+                Text("野良猫には特別なアクションはありません。\n話し合いで人間を見つけ出しましょう！")
                     .font(.title3)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding()
 
                 Button(action: {
-                    viewModel.goToNextPlayer() // 次のプレイヤーへ
+                    viewModel.goToNextPlayer() 
                 }) {
                     Text("次のプレイヤーへ")
                         .font(.title2)
@@ -45,4 +45,11 @@ struct NoraCatTextView: View {
             .padding()
         }
     }
+}
+#Preview {
+    let vm = RoleCheckStartViewModel()
+    vm.startGame(with: ["A", "B", "C", "D", "E"])
+    vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
+    vm.currentIndex = 2 // 例：Cさんが野良猫の想定
+    return NoraCatTextView(viewModel: vm)
 }

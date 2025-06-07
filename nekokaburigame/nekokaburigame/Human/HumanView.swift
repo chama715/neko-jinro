@@ -13,7 +13,7 @@ struct HumanView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("あなたの役職は\n『人間』です")
+            Text("あなたの役職は・・・")
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
 

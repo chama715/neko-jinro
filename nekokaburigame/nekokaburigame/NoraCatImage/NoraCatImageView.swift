@@ -12,22 +12,26 @@ struct NoraCatImageView: View {
 
     var body: some View {
         ZStack {
-            Image(.nikukyu)
+            Image(.noracat)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
+                .offset(x: -40)
 
             VStack(spacing: 20) {
                 Text("あなたの役職は…")
                     .font(.title)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
+                    .padding(40)
+                
+                Spacer()
+                
+                Text("野良猫です。")
+                    .font(.title)
+                    .foregroundColor(.black)
+                    .padding(40)
 
-                Image("human_role") // あなたが用意した人間の画像名に置き換えてください
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 300)
-
-                NavigationLink(destination: HumanTextView(viewModel: viewModel)) {
+                NavigationLink(destination: NoraCatTextView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)
                         .padding()
@@ -39,4 +43,11 @@ struct NoraCatImageView: View {
             }
         }
     }
+}
+#Preview {
+    let vm = RoleCheckStartViewModel()
+    vm.startGame(with: ["A", "B", "C", "D", "E"])
+    vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
+    vm.currentIndex = 2 // 例：Cさんが野良猫
+    return NoraCatImageView(viewModel: vm)
 }

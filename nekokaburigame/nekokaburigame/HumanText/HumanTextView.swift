@@ -12,26 +12,38 @@ struct HumanTextView: View {
 
     var body: some View {
         ZStack {
-            Image(.nikukyu)
+            Image(.background)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
 
-            VStack(spacing: 30) {
+            VStack(spacing: 10) {
+                Spacer()
+
                 Text("あなたの役職は「人間」です。")
                     .font(.title2)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding()
 
-                Text("猫たちを見つけ出しましょう！")
+                if !viewModel.otherHumanName().isEmpty {
+                    VStack(spacing: 8) {
+                        Text("\(viewModel.otherHumanName())さんも\nあなたと同じ人間(仲間)です。")
+                    }
                     .font(.title3)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                }
+
+                Text("あなたともう1人の人間が\nどちらも投票されなかった場合\n人間チームの勝利となります。")
+                    .font(.title3)
+                    .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding()
 
                 Button(action: {
-                    viewModel.goToNextPlayer() // 次のプレイヤーへ
+                    viewModel.goToNextPlayer()
                 }) {
                     Text("次のプレイヤーへ")
                         .font(.title2)
@@ -39,10 +51,13 @@ struct HumanTextView: View {
                         .background(Color.green)
                         .foregroundColor(.white)
                         .cornerRadius(12)
-                        .padding(.horizontal)
                 }
+
+                Spacer()
             }
             .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
         }
     }
 }

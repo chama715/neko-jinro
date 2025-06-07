@@ -27,7 +27,7 @@ struct RobCatImageView: View {
                     .scaledToFit()
                     .frame(height: 300)
 
-                NavigationLink(destination: HumanTextView(viewModel: viewModel)) {
+                NavigationLink(destination: RobCatTextView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)
                         .padding()

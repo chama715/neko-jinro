@@ -13,7 +13,7 @@ struct NoraCatView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("あなたの役職は\n『野良猫』です")
+            Text("あなたの役職は・・・")
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
 
@@ -30,4 +30,11 @@ struct NoraCatView: View {
             NoraCatImageView(viewModel: viewModel)
         }
     }
+}
+#Preview {
+    let vm = RoleCheckStartViewModel()
+    vm.startGame(with: ["A", "B", "C", "D", "E"])
+    vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
+    vm.currentIndex = 2 // 例：Cさんが野良猫
+    return NoraCatView(viewModel: vm)
 }

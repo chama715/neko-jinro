@@ -40,4 +40,17 @@ class RoleCheckStartViewModel: ObservableObject {
             isGoRoleCheck = true
         }
     }
+    
+    func otherHumanName() -> String {
+        guard assignedRoles.indices.contains(currentIndex),
+              assignedRoles[currentIndex] == .human else {
+            return ""
+        }
+        for (index, role) in assignedRoles.enumerated() {
+            if role == .human && index != currentIndex {
+                return playerNames[index]
+            }
+        }
+        return ""
+    }
 }

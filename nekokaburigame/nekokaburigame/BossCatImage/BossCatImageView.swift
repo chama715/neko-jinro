@@ -27,7 +27,7 @@ struct BossCatImageView: View {
                     .scaledToFit()
                     .frame(height: 300)
 
-                NavigationLink(destination: HumanTextView(viewModel: viewModel)) {
+                NavigationLink(destination: BossCatTextView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)
                         .padding()

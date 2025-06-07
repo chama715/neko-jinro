@@ -12,20 +12,24 @@ struct HumanImageView: View {
 
     var body: some View {
         ZStack {
-            Image(.nikukyu)
+            Image(.human)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
+                .offset(x: -40)
 
             VStack(spacing: 20) {
                 Text("あなたの役職は…")
                     .font(.title)
-                    .foregroundColor(.white)
-
-                Image("human_role") // あなたが用意した人間の画像名に置き換えてください
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 300)
+                    .foregroundColor(.black)
+                    .padding(40)
+                
+                Spacer()
+                
+                Text("人間です。")
+                    .font(.title)
+                    .foregroundColor(.black)
+                    .padding(40)
 
                 NavigationLink(destination: HumanTextView(viewModel: viewModel)) {
                     Text("次へ")
@@ -34,7 +38,7 @@ struct HumanImageView: View {
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(12)
-                        .padding(.horizontal)
+                        .padding()
                 }
             }
         }

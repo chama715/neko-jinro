@@ -31,7 +31,7 @@ struct RobCatTextView: View {
                     .padding()
 
                 Button(action: {
-                    viewModel.goToNextPlayer() // 次のプレイヤーへ
+                    viewModel.goToNextPlayer()
                 }) {
                     Text("次のプレイヤーへ")
                         .font(.title2)

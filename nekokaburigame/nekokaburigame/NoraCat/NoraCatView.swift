@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct NoraCatView: View {
-    var body: some View {
-        Text("野良猫")
-    }
-}
+    @State private var goToImage = false
+    var viewModel: RoleCheckStartViewModel
 
-#Preview {
-    NoraCatView()
+    var body: some View {
+        VStack(spacing: 20) {
+            Text("あなたの役職は\n『野良猫』です")
+                .font(.largeTitle)
+                .multilineTextAlignment(.center)
+
+            Button("次へ") {
+                goToImage = true
+            }
+            .font(.title2)
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(12)
+        }
+        .navigationDestination(isPresented: $goToImage) {
+            NoraCatImageView(viewModel: viewModel)
+        }
+    }
 }

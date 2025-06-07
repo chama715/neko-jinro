@@ -12,22 +12,32 @@ class RoleCheckStartViewModel: ObservableObject {
     @Published var playerNames: [String] = []
     @Published var currentIndex: Int = 0
     @Published var isGoRoleCheck: Bool = false
+    @Published var assignedRoles: [Role] = []
 
     var currentPlayerName: String {
         playerNames.indices.contains(currentIndex) ? playerNames[currentIndex] : ""
+    }
+    
+    var currentRole: Role? {
+        assignedRoles.indices.contains(currentIndex) ? assignedRoles[currentIndex] : nil
     }
 
     func startGame(with names: [String]) {
         playerNames = names
         currentIndex = 0
         isGoRoleCheck = false
+
+        let roles: [Role] = [.human, .human, .noracat, .robcat, .bosscat]
+        assignedRoles = roles.shuffled()
     }
+
 
     func goToNextPlayer() {
         if currentIndex < playerNames.count - 1 {
             currentIndex += 1
+            isGoRoleCheck = false
         } else {
-            isGoRoleCheck = true // 最後のプレイヤーまで終わったら役職画面へ
+            isGoRoleCheck = true
         }
     }
 }

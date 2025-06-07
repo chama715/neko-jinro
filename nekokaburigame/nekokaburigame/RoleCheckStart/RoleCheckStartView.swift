@@ -32,7 +32,7 @@ struct RoleCheckStartView: View {
                     .padding(24)
 
                 Button(action: {
-                    viewModel.goToNextPlayer()
+                    viewModel.isGoRoleCheck = true
                 }) {
                     Text("次へ")
                         .font(.title2)
@@ -45,7 +45,13 @@ struct RoleCheckStartView: View {
             }
         }
         .navigationDestination(isPresented: $viewModel.isGoRoleCheck) {
-            HumanView()
+            switch viewModel.currentRole {
+            case .human: HumanView()
+            case .noracat: NoraCatView()
+            case .bosscat: BossCatView()
+            case .robcat: RobCatView()
+            case .none: Text("役職がみつかりません")
+            }
         }
     }
 }

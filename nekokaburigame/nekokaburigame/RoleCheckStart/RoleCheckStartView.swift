@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct RoleCheckStartView: View {
-    @StateObject private var viewModel = RoleCheckStartViewModel()
+    @ObservedObject var viewModel: RoleCheckStartViewModel
+
     var body: some View {
         ZStack {
             Image(.nikukyu)
@@ -16,22 +17,22 @@ struct RoleCheckStartView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
                 .offset(x: -40)
-            
+
             VStack(spacing: 20) {
                 Text("このプレイヤーに\n端末を渡してください。")
                     .font(.title)
                     .foregroundStyle(.white)
                     .frame(maxHeight: 450, alignment: .top)
-                
-                // プレイヤーごとに変えたい
-                Text("プレイヤー名")
+
+                // プレイヤー名を表示（動的に変化）
+                Text(viewModel.currentPlayerName)
                     .font(.largeTitle)
                     .foregroundStyle(.white)
                     .bold()
                     .padding(24)
-                
+
                 Button(action: {
-                    viewModel.startGame()
+                    viewModel.goToNextPlayer()
                 }) {
                     Text("次へ")
                         .font(.title2)
@@ -47,8 +48,4 @@ struct RoleCheckStartView: View {
             HumanView()
         }
     }
-}
-
-#Preview {
-    RoleCheckStartView()
 }

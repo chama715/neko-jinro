@@ -36,7 +36,7 @@ struct GameReadyView: View {
                 }
             }
             .navigationDestination(isPresented: $viewModel.isGameReady) {
-                RoleCheckStartView()
+                RoleCheckStartView(viewModel: viewModel.rolechekStartviewModel)
             }
         }
     }

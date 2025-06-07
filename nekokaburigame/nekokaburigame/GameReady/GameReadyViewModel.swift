@@ -10,8 +10,10 @@ import Foundation
 @MainActor
 class GameReadyViewModel: ObservableObject {
     @Published var isGameReady = false
+    @Published var rolechekStartviewModel = RoleCheckStartViewModel()
     
     func startGame() {
+        rolechekStartviewModel.startGame(with: ["A","B","C","D","E"])
         isGameReady = true
     }
 }

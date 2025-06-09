@@ -36,13 +36,15 @@ struct BossCatRoleView: View {
 
                 // プレイヤー一覧
                 ForEach(Array(viewModel.playerNames.enumerated()), id: \.offset) { index, name in
-                    // 自分は除外
+
                     if index != viewModel.currentIndex {
                         HStack {
                             Text(name)
                                 .font(.title3)
                                 .bold()
-                            Spacer()
+                                .foregroundStyle(.black)
+                                .padding()
+                            
                             NavigationLink(
                                 destination: BossCatTextView(viewModel: viewModel),
                                 tag: index,

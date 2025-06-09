@@ -31,7 +31,7 @@ struct BossCatImageView: View {
                     .foregroundColor(.black)
                     .padding(40)
 
-                NavigationLink(destination: RobCatRoleView(viewModel: viewModel)) {
+                NavigationLink(destination: BossCatRoleView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)
                         .padding()

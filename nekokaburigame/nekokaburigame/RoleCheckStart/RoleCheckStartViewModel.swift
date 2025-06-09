@@ -17,6 +17,11 @@ class RoleCheckStartViewModel: ObservableObject {
     @Published var isGoRobCatText = false
     @Published var swappedPlayerOriginalRole: Role? = nil
     @Published var selectedViewedIndex: Int? = nil
+    @Published var originalSwappedRole: Role? = nil
+    @Published var originalSwappedIndex: Int? = nil
+    @Published var bossCatIndex: Int? = nil
+
+
 
 
 
@@ -27,6 +32,14 @@ class RoleCheckStartViewModel: ObservableObject {
     var currentRole: Role? {
         assignedRoles.indices.contains(currentIndex) ? assignedRoles[currentIndex] : nil
     }
+    
+    var displayedRole: Role? {
+        if currentIndex == swappedPlayerIndex {
+            return originalSwappedRole
+        } else {
+            return currentRole
+        }
+    }
 
     func startGame(with names: [String]) {
         playerNames = names
@@ -35,8 +48,8 @@ class RoleCheckStartViewModel: ObservableObject {
 
         let roles: [Role] = [.human, .human, .noracat, .robcat, .bosscat]
         assignedRoles = roles.shuffled()
+        bossCatIndex = assignedRoles.firstIndex(of: .bosscat)
     }
-
 
     func goToNextPlayer() {
         if currentIndex < playerNames.count - 1 {
@@ -61,11 +74,15 @@ class RoleCheckStartViewModel: ObservableObject {
     }
     
     func swapRole(with index: Int) {
-        guard index != currentIndex else { return }
+        let thiefIndex = currentIndex
 
+        swappedPlayerOriginalRole = assignedRoles[index]
         swappedPlayerIndex = index
-        swappedPlayerOriginalRole = assignedRoles[index] 
-        assignedRoles.swapAt(currentIndex, index)
+        originalSwappedIndex = index
+        originalSwappedRole = assignedRoles[index] // もともとの役職
+        assignedRoles.swapAt(thiefIndex, index)
         isGoRobCatText = true
     }
+
+
 }

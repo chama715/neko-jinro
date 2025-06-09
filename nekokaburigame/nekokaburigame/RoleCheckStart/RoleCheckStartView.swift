@@ -45,13 +45,14 @@ struct RoleCheckStartView: View {
             }
         }
         .navigationDestination(isPresented: $viewModel.isGoRoleCheck) {
-            switch viewModel.currentRole {
+            switch viewModel.displayedRole {
             case .human: HumanView(viewModel: viewModel)
             case .noracat: NoraCatView(viewModel: viewModel)
-            case .bosscat: BossCatView(viewModel: viewModel)
             case .robcat: RobCatView(viewModel: viewModel)
+            case .bosscat: BossCatView(viewModel: viewModel)
             case .none: Text("役職がみつかりません")
             }
         }
+
     }
 }

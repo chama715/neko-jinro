@@ -18,11 +18,21 @@ struct NoraCatTextView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
-                Text("あなたの役職は「野良猫」です。")
-                    .font(.title2)
-                    .foregroundColor(.black)
-                    .multilineTextAlignment(.center)
-                    .padding()
+                // 入れ替えられたプレイヤーだった場合、元の役職を表示
+                if viewModel.currentIndex == viewModel.swappedPlayerIndex,
+                   let original = viewModel.originalSwappedRole {
+                    Text("あなたの役職は「\(original.displayName)」です。")
+                        .font(.title2)
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                } else {
+                    Text("あなたの役職は「野良猫」です。")
+                        .font(.title2)
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
 
                 Text("野良猫には特別なアクションはありません。\n話し合いで人間を見つけ出しましょう！")
                     .font(.title3)
@@ -31,7 +41,7 @@ struct NoraCatTextView: View {
                     .padding()
 
                 Button(action: {
-                    viewModel.goToNextPlayer() 
+                    viewModel.goToNextPlayer()
                 }) {
                     Text("次のプレイヤーへ")
                         .font(.title2)
@@ -46,6 +56,7 @@ struct NoraCatTextView: View {
         }
     }
 }
+
 #Preview {
     let vm = RoleCheckStartViewModel()
     vm.startGame(with: ["A", "B", "C", "D", "E"])

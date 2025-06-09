@@ -17,23 +17,28 @@ struct HumanTextView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
 
-            VStack(spacing: 10) {
-                Spacer()
-
-                Text("あなたの役職は「人間」です。")
-                    .font(.title2)
-                    .foregroundColor(.black)
-                    .multilineTextAlignment(.center)
-                    .padding()
+            VStack(spacing: 30) {
+                if viewModel.currentIndex == viewModel.swappedPlayerIndex,
+                   let original = viewModel.originalSwappedRole {
+                    Text("あなたの役職は「\(original.displayName)」です。")
+                        .font(.title2)
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                } else {
+                    Text("あなたの役職は「人間」です。")
+                        .font(.title2)
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
 
                 if !viewModel.otherHumanName().isEmpty {
-                    VStack(spacing: 8) {
-                        Text("\(viewModel.otherHumanName())さんも\nあなたと同じ人間(仲間)です。")
-                    }
-                    .font(.title3)
-                    .foregroundColor(.black)
-                    .multilineTextAlignment(.center)
-                    .padding()
+                    Text("もう1人の人間は \(viewModel.otherHumanName()) です。")
+                        .font(.title3)
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .padding()
                 }
 
                 Text("あなたともう1人の人間が\nどちらも投票されなかった場合\n人間チームの勝利となります。")
@@ -51,13 +56,10 @@ struct HumanTextView: View {
                         .background(Color.green)
                         .foregroundColor(.white)
                         .cornerRadius(12)
+                        .padding(.horizontal)
                 }
-
-                Spacer()
             }
             .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-
         }
     }
 }

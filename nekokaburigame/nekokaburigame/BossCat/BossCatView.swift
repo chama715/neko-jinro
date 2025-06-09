@@ -13,18 +13,20 @@ struct BossCatView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("あなたの役職は\n『ボス猫』です")
-                .font(.largeTitle)
-                .multilineTextAlignment(.center)
+            VStack(spacing: 20) {
+                Text("あなたの役職は・・・")
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
 
-            Button("次へ") {
-                goToImage = true
+                Button("次へ") {
+                    goToImage = true
+                }
+                .font(.title2)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(12)
             }
-            .font(.title2)
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(12)
         }
         .navigationDestination(isPresented: $goToImage) {
             BossCatImageView(viewModel: viewModel)

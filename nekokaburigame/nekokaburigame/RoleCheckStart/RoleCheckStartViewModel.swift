@@ -16,6 +16,8 @@ class RoleCheckStartViewModel: ObservableObject {
     @Published var swappedPlayerIndex: Int? = nil
     @Published var isGoRobCatText = false
     @Published var swappedPlayerOriginalRole: Role? = nil
+    @Published var selectedViewedIndex: Int? = nil
+
 
 
     var currentPlayerName: String {

@@ -12,22 +12,26 @@ struct RobCatImageView: View {
 
     var body: some View {
         ZStack {
-            Image(.nikukyu)
+            Image(.robcat)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
+                .offset(x: -40)
 
             VStack(spacing: 20) {
                 Text("あなたの役職は…")
                     .font(.title)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
+                    .padding(40)
+                
+                Spacer()
+                
+                Text("泥棒猫です。")
+                    .font(.title)
+                    .foregroundColor(.black)
+                    .padding(40)
 
-                Image("human_role") // あなたが用意した人間の画像名に置き換えてください
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 300)
-
-                NavigationLink(destination: RobCatTextView(viewModel: viewModel)) {
+                NavigationLink(destination: RobCatRoleView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)
                         .padding()
@@ -39,4 +43,11 @@ struct RobCatImageView: View {
             }
         }
     }
+}
+#Preview {
+    let vm = RoleCheckStartViewModel()
+    vm.startGame(with: ["A", "B", "C", "D", "E"])
+    vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
+    vm.currentIndex = 3 // Dさんが泥棒猫という想定
+    return RobCatImageView(viewModel: vm)
 }

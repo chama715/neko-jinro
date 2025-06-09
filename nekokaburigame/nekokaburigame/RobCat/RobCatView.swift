@@ -13,7 +13,7 @@ struct RobCatView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("あなたの役職は\n『泥棒猫』です")
+            Text("あなたの役職は・・・")
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
 

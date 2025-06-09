@@ -13,6 +13,10 @@ class RoleCheckStartViewModel: ObservableObject {
     @Published var currentIndex: Int = 0
     @Published var isGoRoleCheck: Bool = false
     @Published var assignedRoles: [Role] = []
+    @Published var swappedPlayerIndex: Int? = nil
+    @Published var isGoRobCatText = false
+    @Published var swappedPlayerOriginalRole: Role? = nil
+
 
     var currentPlayerName: String {
         playerNames.indices.contains(currentIndex) ? playerNames[currentIndex] : ""
@@ -52,5 +56,14 @@ class RoleCheckStartViewModel: ObservableObject {
             }
         }
         return ""
+    }
+    
+    func swapRole(with index: Int) {
+        guard index != currentIndex else { return }
+
+        swappedPlayerIndex = index
+        swappedPlayerOriginalRole = assignedRoles[index] 
+        assignedRoles.swapAt(currentIndex, index)
+        isGoRobCatText = true
     }
 }

@@ -7,18 +7,14 @@
 
 import Foundation
 
-// このクラスはメインスレッドで実行されるというおまじない
 @MainActor
-// PlayCountViewModelというクラスを定義。ObservableObjectで、監視されることになる。
 class PlayCountViewModel: ObservableObject {
     // プレイヤー数の状態変数。推奨人数は5人！変更できる。
     @Published var playerCount: Int = 5
-    // プレイヤー名を保存する配列。空の箱を5つ用意しておく。クラッシュ対策でPublishedをつけていない。
     var playerName: [String] = Array(repeating: "", count: 5)
-    
     // isGameReadyActiveの状態が変わったら画面に通知がいく。falseにしておいて、trueになったら画面が変わる。
     @Published var isGameReadyActive: Bool = false
-
+    
     // プレイヤー数を変更する関数。
     func adjustPlayerNameArray() {
         // もし、プレイヤー数が増えたら・・・
@@ -35,8 +31,8 @@ class PlayCountViewModel: ObservableObject {
     }
     // isGameReadyActiveの値をtrueにする関数
     func startGame() {
-            isGameReadyActive = true
-        }
+        isGameReadyActive = true
+    }
 }
 
 

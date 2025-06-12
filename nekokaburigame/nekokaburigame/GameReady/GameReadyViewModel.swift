@@ -9,6 +9,7 @@ import Foundation
 
 @MainActor
 class GameReadyViewModel: ObservableObject {
+    // 画面遷移用の状態管理。
     @Published var isGameReady = false
     @Published var rolechekStartviewModel = RoleCheckStartViewModel()
     

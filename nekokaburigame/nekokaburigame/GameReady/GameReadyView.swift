@@ -5,6 +5,9 @@
 //  Created by 高橋直斗 on 2025/06/06.
 //
 
+// 役職振り分け前の画面。
+// 状態管理、ボタンアクション、画面遷移はTitle、PlayCountファイルの応用でいけた。
+
 import SwiftUI
 
 struct GameReadyView: View {
@@ -22,7 +25,7 @@ struct GameReadyView: View {
                     .font(.title3)
                     .bold()
                     .padding()
-            
+                
                 Button(action: {
                     viewModel.startGame()
                 }) {

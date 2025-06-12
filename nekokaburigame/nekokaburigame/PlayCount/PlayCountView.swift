@@ -5,11 +5,12 @@
 //  Created by 高橋直斗 on 2025/06/06.
 //
 
+
+
 import SwiftUI
 
-// Viewプロトコルに準拠したPlayCountView構造体を定義。
 struct PlayCountView: View {
-    // viewModelをこの画面とがちゃんこというか、紐付けしている
+    
     @StateObject private var viewModel = PlayCountViewModel()
     
     var body: some View {
@@ -26,15 +27,16 @@ struct PlayCountView: View {
                         .font(.title)
                         .foregroundColor(.black)
                 }
-                // プレイヤー数が変更されたら、名前の数も調整する。クラッシュしたから非同期処理にした。
+                // プレイヤー数が変更されたら、名前の数も調整する。クラッシュしたから非同期処理にした。DispatchQueue.main.asyncで、全ての処理が終わるまで待つ。というやつ。
                 .onChange(of: viewModel.playerCount) { _, _ in
                     DispatchQueue.main.async {
                         viewModel.adjustPlayerNameArray()
                     }
                 }
                 
-                // Lazyは高速？
+                // FoEachなど、数多くのリストなどを表示する時はLazyの方を使う。
                 LazyVStack(spacing: 10) {
+                    // 繰り返しの処理。
                     ForEach(0..<viewModel.playerCount, id: \.self) { index in
                         if index < viewModel.playerName.count {
                             TextField("プレイヤー\(index + 1)", text: Binding(
@@ -49,10 +51,12 @@ struct PlayCountView: View {
                 .frame(height: 250)
                 .frame(width: 350)
                 
+                // 画面遷移。
                 .navigationDestination(isPresented: $viewModel.isGameReadyActive) {
                     GameReadyView()
                 }
                 
+                // startGameを実行→isGameReadyActiveがtrue
                 Button(action: {
                     viewModel.startGame()
                 }) {
@@ -67,6 +71,8 @@ struct PlayCountView: View {
             }
         }
         .padding()
+        
+        //　ZStackで背景指定しようとしたらうまくいかなかったからこうしてみたらいけた。
         .background(
             Image(.background)
                 .resizable()
@@ -75,8 +81,8 @@ struct PlayCountView: View {
         )
     }
 }
-    
-    #Preview {
-        PlayCountView()
-    }
+
+#Preview {
+    PlayCountView()
+}
 

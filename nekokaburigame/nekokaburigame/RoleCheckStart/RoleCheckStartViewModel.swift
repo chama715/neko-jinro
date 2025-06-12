@@ -28,7 +28,7 @@ class RoleCheckStartViewModel: ObservableObject {
     @Published var originalSwappedIndex: Int? = nil // ボス猫が誰の役職を見たか。
     @Published var bossCatIndex: Int? = nil // ボス猫が誰か。
     
-    // 今現在のプレイヤー名を返す処理。
+    // 今現在のプレイヤー名を返す処理。ここで表示された人に端末を渡す。
     var currentPlayerName: String {
         playerNames.indices.contains(currentIndex) ? playerNames[currentIndex] : ""
     }

@@ -11,6 +11,7 @@
 import SwiftUI
 
 struct GameReadyView: View {
+    let playerNames: [String]
     @StateObject private var viewModel = GameReadyViewModel()
     var body: some View {
         ZStack {
@@ -27,7 +28,7 @@ struct GameReadyView: View {
                     .padding()
                 
                 Button(action: {
-                    viewModel.startGame()
+                    viewModel.startGame(with: playerNames)
                 }) {
                     Text("OK")
                         .font(.title2)
@@ -43,8 +44,4 @@ struct GameReadyView: View {
             }
         }
     }
-}
-
-#Preview {
-    GameReadyView()
 }

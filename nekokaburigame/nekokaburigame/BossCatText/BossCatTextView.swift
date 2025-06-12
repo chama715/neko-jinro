@@ -31,7 +31,17 @@ struct BossCatTextView: View {
                 else if let seen = viewModel.selectedViewedIndex,
                         seen >= 0 && seen < viewModel.playerNames.count && seen < viewModel.assignedRoles.count,
                         viewModel.currentIndex == viewModel.bossCatIndex {
-                    Text("\(viewModel.playerNames[seen])の役職は「\(viewModel.assignedRoles[seen].displayName)」でした。")
+                    let roleToShow: Role = {
+                        // もしボス猫が見た相手が泥棒猫に役職を入れ替えられていたら
+                        if let swappedIndex = viewModel.swappedPlayerIndex,
+                           swappedIndex == seen,
+                           let original = viewModel.swappedPlayerOriginalRole {
+                            return original //
+                        } else {
+                            return viewModel.assignedRoles[seen] 
+                        }
+                    }()
+                    Text("\(viewModel.playerNames[seen])の役職は「\(roleToShow.displayName)」でした。")
                         .font(.title2)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)

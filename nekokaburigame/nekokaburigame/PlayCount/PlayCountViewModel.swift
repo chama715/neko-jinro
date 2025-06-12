@@ -11,6 +11,7 @@ import Foundation
 class PlayCountViewModel: ObservableObject {
     // プレイヤー数の状態変数。推奨人数は5人！変更できる。
     @Published var playerCount: Int = 5
+    // プレイヤー名の配列
     var playerName: [String] = Array(repeating: "", count: 5)
     // isGameReadyActiveの状態が変わったら画面に通知がいく。falseにしておいて、trueになったら画面が変わる。
     @Published var isGameReadyActive: Bool = false

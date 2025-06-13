@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct NoraCatView: View {
+    // シンプルな画面遷移の時はこのくらいでいける。
     @State private var goToImage = false
+    // 役職とかを一括管理しているViewModelの力を貸してもらいます。
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -26,15 +28,9 @@ struct NoraCatView: View {
             .foregroundColor(.white)
             .cornerRadius(12)
         }
+        // goToImageがtrueになったら次の画面へ！
         .navigationDestination(isPresented: $goToImage) {
             NoraCatImageView(viewModel: viewModel)
         }
     }
-}
-#Preview {
-    let vm = RoleCheckStartViewModel()
-    vm.startGame(with: ["A", "B", "C", "D", "E"])
-    vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
-    vm.currentIndex = 2 // 例：Cさんが野良猫
-    return NoraCatView(viewModel: vm)
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BossCatRoleView: View {
     var viewModel: RoleCheckStartViewModel
+    // 選んだプレイヤーを保存するための状態。デフォはなし。
     @State private var selectedIndex: Int? = nil
 
     var body: some View {
@@ -34,10 +35,12 @@ struct BossCatRoleView: View {
                     .multilineTextAlignment(.center)
                     .padding()
 
-                // プレイヤー一覧
+                // プレイヤー一覧を表示。
                 ForEach(Array(viewModel.playerNames.enumerated()), id: \.offset) { index, name in
 
+                    // 自分は表示させない。
                     if index != viewModel.currentIndex {
+                        // 名前と見るボタンを横並びにする。
                         HStack {
                             Text(name)
                                 .font(.title3)
@@ -45,6 +48,7 @@ struct BossCatRoleView: View {
                                 .foregroundStyle(.black)
                                 .padding()
                             
+                            // いじるとエラーが起きてしまう。。
                             NavigationLink(
                                 destination: BossCatTextView(viewModel: viewModel),
                                 tag: index,
@@ -52,6 +56,7 @@ struct BossCatRoleView: View {
                             ) {
                                 EmptyView()
                             }
+                            // ボタンを押すと選んだプレイヤーが記録され、画面遷移して役職を確認できる。
                             Button("役職を見る") {
                                 viewModel.selectedViewedIndex = index
                                 selectedIndex = index
@@ -67,17 +72,5 @@ struct BossCatRoleView: View {
                 }
             }
         }
-    }
-}
-
-
-#Preview {
-    NavigationStack {
-        let vm = RoleCheckStartViewModel()
-        vm.startGame(with: ["A", "B", "C", "D", "E"])
-        vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
-        vm.currentIndex = 4 // Eさんがボス猫の想定
-
-        return BossCatRoleView(viewModel: vm)
     }
 }

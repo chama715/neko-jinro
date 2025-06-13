@@ -31,6 +31,7 @@ struct NoraCatImageView: View {
                     .foregroundColor(.black)
                     .padding(40)
 
+                // シンプルな画面遷移
                 NavigationLink(destination: NoraCatTextView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)
@@ -43,11 +44,4 @@ struct NoraCatImageView: View {
             }
         }
     }
-}
-#Preview {
-    let vm = RoleCheckStartViewModel()
-    vm.startGame(with: ["A", "B", "C", "D", "E"])
-    vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
-    vm.currentIndex = 2 // 例：Cさんが野良猫
-    return NoraCatImageView(viewModel: vm)
 }

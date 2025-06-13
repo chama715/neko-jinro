@@ -18,15 +18,17 @@ struct NoraCatTextView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
-                // 入れ替えられたプレイヤーだった場合、元の役職を表示
+                // 自分が泥棒猫に役職を奪われたのかのチェック。(知らされはしない)。一致しているか？
                 if viewModel.currentIndex == viewModel.swappedPlayerIndex,
                    let original = viewModel.originalSwappedRole {
+                    // 入れ替えられてたらこっち
                     Text("あなたの役職は「\(original.displayName)」です。")
                         .font(.title2)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .padding()
                 } else {
+                    // 入れ替えられてなければこっち
                     Text("あなたの役職は「野良猫」です。")
                         .font(.title2)
                         .foregroundColor(.black)
@@ -55,12 +57,4 @@ struct NoraCatTextView: View {
             .padding()
         }
     }
-}
-
-#Preview {
-    let vm = RoleCheckStartViewModel()
-    vm.startGame(with: ["A", "B", "C", "D", "E"])
-    vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
-    vm.currentIndex = 2 // 例：Cさんが野良猫の想定
-    return NoraCatTextView(viewModel: vm)
 }

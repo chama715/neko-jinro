@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RoleCheckStartView: View {
+    // viewModelを監視しているし、がちゃんこしている。
     @ObservedObject var viewModel: RoleCheckStartViewModel
 
     var body: some View {

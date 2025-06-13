@@ -5,12 +5,13 @@
 //  Created by 高橋直斗 on 2025/06/06.
 //
 
-
+// 新要素はStepper。あと難しいのは.onChavge、ForEach。プレイヤーの人数と名前を決めて、次の画面に引き渡す結構重要な画面。
 
 import SwiftUI
 
 struct PlayCountView: View {
     
+    // 裏にあるViewModelを監視。
     @StateObject private var viewModel = PlayCountViewModel()
     
     var body: some View {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RobCatRoleView: View {
+    // RoleCheckStartViewModelのPublishedを反映。
     @ObservedObject var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -27,9 +28,12 @@ struct RobCatRoleView: View {
                     .font(.title3)
                     .foregroundColor(.black)
 
+                // プレイヤーをリスト化。
                 ForEach(viewModel.playerNames.indices, id: \.self) { index in
+                    // 自分以外。
                     if index != viewModel.currentIndex {
                         HStack {
+                            // プレイヤー名と入れ替えるボタンを横並びに。
                             Text(viewModel.playerNames[index])
                                 .font(.body)
                                 .foregroundColor(.black)
@@ -47,18 +51,9 @@ struct RobCatRoleView: View {
             }
             .padding()
         }
-        
+        // 画面遷移。
         .navigationDestination(isPresented: $viewModel.isGoRobCatText) {
             RobCatTextView(viewModel: viewModel)
         }
-    }
-}
-#Preview {
-    NavigationStack {
-        let vm = RoleCheckStartViewModel()
-        vm.startGame(with: ["A", "B", "C", "D", "E"])
-        vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
-        vm.currentIndex = 3 // Dが泥棒猫
-        return RobCatRoleView(viewModel: vm)
     }
 }

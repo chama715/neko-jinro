@@ -44,10 +44,3 @@ struct RobCatImageView: View {
         }
     }
 }
-#Preview {
-    let vm = RoleCheckStartViewModel()
-    vm.startGame(with: ["A", "B", "C", "D", "E"])
-    vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
-    vm.currentIndex = 3 // Dさんが泥棒猫という想定
-    return RobCatImageView(viewModel: vm)
-}

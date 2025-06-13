@@ -5,7 +5,7 @@
 //  Created by 高橋直斗 on 2025/06/06.
 //
 
-//
+//基礎的な知識だけでOK
 
 import SwiftUI
 

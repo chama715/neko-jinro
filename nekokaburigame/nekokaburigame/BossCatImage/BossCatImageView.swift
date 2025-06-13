@@ -44,10 +44,3 @@ struct BossCatImageView: View {
         }
     }
 }
-#Preview {
-    let vm = RoleCheckStartViewModel()
-    vm.startGame(with: ["A", "B", "C", "D", "E"])
-    vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
-    vm.currentIndex = 3
-    return BossCatImageView(viewModel: vm)
-}

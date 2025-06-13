@@ -12,7 +12,6 @@ struct BossCatView: View {
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
-        VStack(spacing: 20) {
             VStack(spacing: 20) {
                 Text("あなたの役職は・・・")
                     .font(.largeTitle)
@@ -27,7 +26,6 @@ struct BossCatView: View {
                 .foregroundColor(.white)
                 .cornerRadius(12)
             }
-        }
         .navigationDestination(isPresented: $goToImage) {
             BossCatImageView(viewModel: viewModel)
         }

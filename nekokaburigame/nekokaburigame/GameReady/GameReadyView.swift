@@ -11,7 +11,9 @@
 import SwiftUI
 
 struct GameReadyView: View {
+    // 前の画面から渡されるプレイヤー名のリスト
     let playerNames: [String]
+    // お馴染みの、監視するやつ
     @StateObject private var viewModel = GameReadyViewModel()
     var body: some View {
         ZStack {
@@ -27,6 +29,7 @@ struct GameReadyView: View {
                     .bold()
                     .padding()
                 
+                // viewModelのstarGammeにplayerNamesを渡す。
                 Button(action: {
                     viewModel.startGame(with: playerNames)
                 }) {
@@ -39,6 +42,7 @@ struct GameReadyView: View {
                         .padding(.horizontal)
                 }
             }
+            // 画面遷移。isGameReadyがtrueになったら、RoleCheckStartViewModelを渡す。
             .navigationDestination(isPresented: $viewModel.isGameReady) {
                 RoleCheckStartView(viewModel: viewModel.rolechekStartviewModel)
             }

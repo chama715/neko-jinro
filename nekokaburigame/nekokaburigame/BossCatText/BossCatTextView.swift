@@ -18,7 +18,7 @@ struct BossCatTextView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
-                // ① 入れ替えられたプレイヤーには元の役職を表示
+               // 泥棒猫に役職を盗まれていたら、とりあえずボス猫って表示させる。
                 if viewModel.currentIndex == viewModel.swappedPlayerIndex,
                    let original = viewModel.originalSwappedRole {
                     Text("あなたの役職は「\(original.displayName)」です。")
@@ -27,12 +27,12 @@ struct BossCatTextView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                 }
-                // ② ボス猫が誰かの役職を見た場合、その結果を表示
+                // ボス猫が誰かの役職を見ていたら、その役職がなにかを表示。
                 else if let seen = viewModel.selectedViewedIndex,
                         seen >= 0 && seen < viewModel.playerNames.count && seen < viewModel.assignedRoles.count,
                         viewModel.currentIndex == viewModel.bossCatIndex {
                     let roleToShow: Role = {
-                        // もしボス猫が見た相手が泥棒猫に役職を入れ替えられていたら
+                        // 選んだ相手が盗まれていた人だったら、盗み前の役職を表示。
                         if let swappedIndex = viewModel.swappedPlayerIndex,
                            swappedIndex == seen,
                            let original = viewModel.swappedPlayerOriginalRole {
@@ -47,7 +47,7 @@ struct BossCatTextView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                 }
-                // ③ それ以外（何も表示できない場合）
+                // ほぼないけど、else。
                 else {
                     Text("表示できる情報がありません。")
                         .foregroundColor(.gray)
@@ -69,13 +69,4 @@ struct BossCatTextView: View {
             .padding()
         }
     }
-}
-
-
-#Preview {
-    let vm = RoleCheckStartViewModel()
-    vm.startGame(with: ["A", "B", "C", "D", "E"])
-    vm.assignedRoles = [.human, .human, .noracat, .robcat, .bosscat]
-    vm.currentIndex = 3 // Dさんが泥棒猫という想定
-    return BossCatTextView(viewModel: vm)
 }

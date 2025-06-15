@@ -10,7 +10,7 @@ import SwiftUI
 struct RoleCheckStartView: View {
     // viewModelを監視しているし、がちゃんこしている。
     @ObservedObject var viewModel: RoleCheckStartViewModel
-
+    
     var body: some View {
         ZStack {
             Image(.nikukyu)
@@ -19,20 +19,20 @@ struct RoleCheckStartView: View {
                 .ignoresSafeArea()
             // 画面がなぜか右よりになってしまっていたので、左に寄せた。
                 .offset(x: -40)
-
+            
             VStack(spacing: 20) {
                 Text("このプレイヤーに\n端末を渡してください。")
                     .font(.title)
                     .foregroundStyle(.white)
                     .frame(maxHeight: 450, alignment: .top)
-
+                
                 // 各プレイヤー名を表示して、端末を渡させる。
                 Text(viewModel.currentPlayerName)
                     .font(.largeTitle)
                     .foregroundStyle(.white)
                     .bold()
                     .padding(24)
-
+                
                 // ボタンを押したら、viewModelのisGoRoleCheckがtrueになる。
                 Button(action: {
                     viewModel.isGoRoleCheck = true
@@ -59,6 +59,10 @@ struct RoleCheckStartView: View {
             case .none: Text("役職がみつかりません") // なければ、なし。
             }
         }
-
+        .navigationDestination(isPresented: $viewModel.isAllFinished) {
+            RoleCheckEndView()
+        }
+        
+        
     }
 }

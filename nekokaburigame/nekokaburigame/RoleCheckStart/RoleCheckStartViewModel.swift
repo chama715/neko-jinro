@@ -28,6 +28,9 @@ class RoleCheckStartViewModel: ObservableObject {
     @Published var originalSwappedIndex: Int? = nil // ボス猫が誰の役職を見たか。
     @Published var bossCatIndex: Int? = nil // ボス猫が誰か。
     
+    @Published var isAllFinished = false // 役職確認終了後、話し合いの画面に遷移するためのやつ
+
+    
     // 今現在のプレイヤー名を返す処理。ここで表示された人に端末を渡す。
     var currentPlayerName: String {
         playerNames.indices.contains(currentIndex) ? playerNames[currentIndex] : ""
@@ -65,9 +68,11 @@ class RoleCheckStartViewModel: ObservableObject {
             currentIndex += 1
             isGoRoleCheck = false
         } else {
-            isGoRoleCheck = true
+            isGoRoleCheck = true // 最後のプレイヤーの確認画面へ
+            isAllFinished = true // そのあと話し合い画面へ
         }
     }
+
     
     // 人間が、もう1人の人間は誰かを表示させるための関数。
     func otherHumanName() -> String {

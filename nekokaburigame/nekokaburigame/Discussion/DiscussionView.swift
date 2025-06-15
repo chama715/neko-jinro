@@ -18,44 +18,42 @@ struct DiscussionView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 40) {
-                Text(viewModel.timeString)
-                    .font(.system(size: 60, weight: .bold, design: .monospaced))
-                    .padding()
+                if viewModel.isTimerRunning {
 
-                HStack(spacing: 30) {
-                    Button(action: { viewModel.adjustTime(by: -60) }) {
-                        Image(systemName: "minus.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(.red)
-                    }
+                    Text(viewModel.timeString)
+                        .font(.system(size: 60, weight: .bold, design: .monospaced))
+                        .padding()
+                } else {
 
-                    Button(action: {
-                        viewModel.isTimerActive ? viewModel.stopTimer() : viewModel.startTimer()
-                    }) {
-                        Image(systemName: viewModel.isTimerActive ? "pause.circle.fill" : "play.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(.blue)
-                    }
+                    HStack {
+                        Picker("分", selection: $viewModel.selectedMinutes) {
+                            ForEach(0..<60) { Text("\($0)分") }
+                        }
+                        .frame(width: 100)
+                        .clipped()
 
-                    Button(action: { viewModel.adjustTime(by: 60) }) {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(.green)
+                        Picker("秒", selection: $viewModel.selectedSeconds) {
+                            ForEach(0..<60) { Text("\($0)秒") }
+                        }
+                        .frame(width: 100)
+                        .clipped()
                     }
+                    .pickerStyle(.wheel)
                 }
 
                 Button(action: {
-                    viewModel.stopTimer()
+                    viewModel.isTimerRunning ? viewModel.stopTimer() : viewModel.startTimer()
                 }) {
-                    Text("話し合いを終了")
+                    Text(viewModel.isTimerRunning ? "話し合いを終了" : "話し合いを開始")
                         .font(.title2)
                         .padding()
-                        .background(Color.blue)
+                        .frame(width: 220)
+                        .background(viewModel.isTimerRunning ? Color.red : Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(12)
-                        .padding(.horizontal)
                 }
             }
+            .padding()
         }
     }
 }

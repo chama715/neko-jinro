@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RoleCheckEndView: View {
+    // この画面専用のViewModelを生成し、保持する。
     @StateObject private var viewModel = RoleCheckEndViewModel()
     var body: some View {
         ZStack {
@@ -30,6 +31,7 @@ struct RoleCheckEndView: View {
                     .padding()
                 
                 
+                // ボタンを押すことで画面遷移する。関数が呼び出されることでfalseがtrueになり、遷移する。
                 Button(action: {
                     viewModel.startGame()
                 }) {

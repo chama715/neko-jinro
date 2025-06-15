@@ -6,45 +6,39 @@
 //
 
 import Foundation
-import Combine
 
 @MainActor
 class DiscussionViewModel: ObservableObject {
-    @Published var remainingTime: Int = 180 // 3分（180秒）
-    @Published var isTimerActive = false
+    @Published var selectedMinutes = 3
+    @Published var selectedSeconds = 0
+    @Published var remainingTime = 0
+    @Published var isTimerRunning = false
 
-    private var timer: AnyCancellable?
+    var timer: Timer?
 
     var timeString: String {
         String(format: "%02d:%02d", remainingTime / 60, remainingTime % 60)
     }
 
     func startTimer() {
-        isTimerActive = true
-        timer?.cancel()
-        timer = Timer
-            .publish(every: 1, on: .main, in: .common)
-            .autoconnect()
-            .sink { [weak self] _ in
-                guard let self = self else { return }
+        remainingTime = selectedMinutes * 60 + selectedSeconds
+        isTimerRunning = true
+
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            DispatchQueue.main.async {
                 if self.remainingTime > 0 {
                     self.remainingTime -= 1
                 } else {
                     self.stopTimer()
                 }
             }
+        }
     }
 
     func stopTimer() {
-        isTimerActive = false
-        timer?.cancel()
-    }
-
-    func adjustTime(by seconds: Int) {
-        let newTime = remainingTime + seconds
-        if newTime >= 0 {
-            remainingTime = newTime
-        }
+        isTimerRunning = false
+        timer?.invalidate()
+        timer = nil
     }
 }
-

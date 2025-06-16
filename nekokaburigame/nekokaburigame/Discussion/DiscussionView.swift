@@ -20,18 +20,22 @@ struct DiscussionView: View {
             VStack(spacing: 40) {
                 if viewModel.isTimerRunning {
 
+                    // trueつまりタイマーが動いているなら、timeStringを表示。
                     Text(viewModel.timeString)
                         .font(.system(size: 60, weight: .bold, design: .monospaced))
                         .padding()
+                    // falseつまりタイマーが動いていなければ、以下の処理
                 } else {
 
                     HStack {
+                        // 分を選択。デフォは3分にした。0〜60まであるが、5分とかでいい気もする。
                         Picker("分", selection: $viewModel.selectedMinutes) {
                             ForEach(0..<60) { Text("\($0)分") }
                         }
                         .frame(width: 100)
                         .clipped()
 
+                        // 秒を選択。デフォは0。0〜60秒を選択。
                         Picker("秒", selection: $viewModel.selectedSeconds) {
                             ForEach(0..<60) { Text("\($0)秒") }
                         }
@@ -41,9 +45,12 @@ struct DiscussionView: View {
                     .pickerStyle(.wheel)
                 }
 
+                // ボタンを押すと{}の処理を実行
                 Button(action: {
+                    // タイマーが動いていれば止める、じゃなければ開始をする。三項演算子。
                     viewModel.isTimerRunning ? viewModel.stopTimer() : viewModel.startTimer()
                 }) {
+                    // ↑の状態に応じて、ボタンのテキストを変える。
                     Text(viewModel.isTimerRunning ? "話し合いを終了" : "話し合いを開始")
                         .font(.title2)
                         .padding()

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RoleCheckEndView: View {
+    let playerNames: [String]
     // この画面専用のViewModelを生成し、保持する。
     @StateObject private var viewModel = RoleCheckEndViewModel()
     var body: some View {
@@ -46,11 +47,7 @@ struct RoleCheckEndView: View {
             }
         }
         .navigationDestination(isPresented: $viewModel.isGameStarted) {
-                    DiscussionView()
-                }
+            DiscussionView(playerNames: playerNames)
+        }
     }
-}
-
-#Preview {
-    RoleCheckEndView()
 }

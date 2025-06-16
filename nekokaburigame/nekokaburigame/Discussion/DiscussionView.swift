@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DiscussionView: View {
+    let playerNames: [String]
     @StateObject private var viewModel = DiscussionViewModel()
 
     var body: some View {
@@ -47,10 +48,13 @@ struct DiscussionView: View {
 
                 // ボタンを押すと{}の処理を実行
                 Button(action: {
-                    // タイマーが動いていれば止める、じゃなければ開始をする。三項演算子。
-                    viewModel.isTimerRunning ? viewModel.stopTimer() : viewModel.startTimer()
+                    // タイマーが動いていれば、終了処理（＝stop & 遷移）
+                    if viewModel.isTimerRunning {
+                        viewModel.endDiscussion() 
+                    } else {
+                        viewModel.startTimer()
+                    }
                 }) {
-                    // ↑の状態に応じて、ボタンのテキストを変える。
                     Text(viewModel.isTimerRunning ? "話し合いを終了" : "話し合いを開始")
                         .font(.title2)
                         .padding()
@@ -59,12 +63,12 @@ struct DiscussionView: View {
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }
+
             }
             .padding()
         }
+        .navigationDestination(isPresented: $viewModel.isDiscussionFinished) {
+                        VoteView(playerNames: playerNames)
+                    }
     }
-}
-
-#Preview {
-    DiscussionView()
 }

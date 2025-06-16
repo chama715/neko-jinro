@@ -13,6 +13,7 @@ class DiscussionViewModel: ObservableObject { // 変更の内容がViewに伝わ
     @Published var selectedSeconds = 0 // タイマーの秒。デフォは0秒なので0。
     @Published var remainingTime = 0 //  合計の秒数(残り)の空箱。表示されるのはこれ。
     @Published var isTimerRunning = false // ボタンの中身というか、これがtrueになったら表示が変わる。
+    @Published var isDiscussionFinished = false // 画面遷移用の
 
     //
     var timer: Timer?
@@ -40,7 +41,7 @@ class DiscussionViewModel: ObservableObject { // 変更の内容がViewに伝わ
                     self.remainingTime -= 1
                     // 残り時間0なら、止める。
                 } else {
-                    self.stopTimer()
+                    self.endDiscussion()
                 }
             }
         }
@@ -52,4 +53,10 @@ class DiscussionViewModel: ObservableObject { // 変更の内容がViewに伝わ
         timer?.invalidate()
         timer = nil
     }
+    
+    // 画面遷移の関数。
+    func endDiscussion() {
+            stopTimer()
+            isDiscussionFinished = true
+        }
 }

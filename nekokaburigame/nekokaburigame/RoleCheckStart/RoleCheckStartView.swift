@@ -60,7 +60,7 @@ struct RoleCheckStartView: View {
             }
         }
         .navigationDestination(isPresented: $viewModel.isAllFinished) {
-            RoleCheckEndView()
+            RoleCheckEndView(playerNames: viewModel.playerNames)
         }
         
         

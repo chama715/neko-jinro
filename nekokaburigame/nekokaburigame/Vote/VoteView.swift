@@ -8,11 +8,56 @@
 import SwiftUI
 
 struct VoteView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
 
-#Preview {
-    VoteView()
+    let playerNames: [String]
+
+    @StateObject private var viewModel = VoteViewModel()
+    var body: some View {
+        ZStack {
+            Image(.background)
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+            
+            VStack(spacing: 20) {
+                
+                Text("話し合いが終了しました。\n各自、処刑するプレイヤーを選択し\n次のプレイヤーに端末を渡してください。")
+                    .font(.title3)
+                    .bold()
+                    .padding()
+                
+                Button(action: {
+                    viewModel.startGame(with: playerNames)
+                }) {
+                    Text("投票画面へ")
+                        .font(.title2)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                }
+                Text("処刑するプレイヤーが話し合いで\n決まっている場合は、こちらから\n選択することも可能です。")
+                    .font(.title3)
+                    .bold()
+                    .padding()
+                
+                Button(action: {
+                    viewModel.startGame(with: playerNames)
+                }) {
+                    Text("プレイヤー選択画面へ")
+                        .font(.title2)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                }
+            }
+            
+            .navigationDestination(isPresented: $viewModel.isGameReady) {
+                RoleCheckStartView(viewModel: viewModel.rolechekStartviewModel)
+            }
+        }
+    }
 }

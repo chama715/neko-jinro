@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct VoteView: View {
-
+    
     let playerNames: [String]
-
+    
     @StateObject private var viewModel = VoteViewModel()
     var body: some View {
         ZStack {
@@ -27,7 +27,8 @@ struct VoteView: View {
                     .padding()
                 
                 Button(action: {
-                    viewModel.startGame(with: playerNames)
+                    viewModel.goToVote = true
+                    // 投票画面へ遷移
                 }) {
                     Text("投票画面へ")
                         .font(.title2)
@@ -43,7 +44,7 @@ struct VoteView: View {
                     .padding()
                 
                 Button(action: {
-                    viewModel.startGame(with: playerNames)
+                    viewModel.goToExecution = true
                 }) {
                     Text("プレイヤー選択画面へ")
                         .font(.title2)
@@ -55,8 +56,11 @@ struct VoteView: View {
                 }
             }
             
-            .navigationDestination(isPresented: $viewModel.isGameReady) {
-                RoleCheckStartView(viewModel: viewModel.rolechekStartviewModel)
+            .navigationDestination(isPresented: $viewModel.goToExecution) {
+                ExecutionView()
+            }
+            .navigationDestination(isPresented: $viewModel.goToVote) {
+                VoteStartView()
             }
         }
     }

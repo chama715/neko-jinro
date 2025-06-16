@@ -9,12 +9,7 @@ import Foundation
 
 @MainActor
 class VoteViewModel: ObservableObject {
-
-    @Published var isGameReady = false
-    @Published var rolechekStartviewModel = RoleCheckStartViewModel()
+    @Published var goToExecution = false
+    @Published var goToVote = false
     
-    func startGame(with names: [String]) {
-            rolechekStartviewModel.startGame(with: names)
-            isGameReady = true
-    }
 }

@@ -12,6 +12,9 @@ struct VoteStartView: View {
     @State private var isGoToVoteSelect = false
     @State private var currentIndex = 0
     @State private var isGoToVoteCheck = false
+    
+    @StateObject private var viewModel = VoteStartViewViewModel()
+
 
 
     var body: some View {
@@ -54,12 +57,13 @@ struct VoteStartView: View {
                     playerNames: playerNames,
                     currentVoterIndex: currentIndex,
                     currentIndex: $currentIndex,
-                    isGoToVote: $isGoToVoteSelect
+                    isGoToVote: $isGoToVoteSelect,
+                    isGoToVoteCheck: $isGoToVoteCheck 
                 )
             }
 
             .navigationDestination(isPresented: $isGoToVoteCheck) {
-                VoteCheckView() 
+                VoteCheckView(votes: viewModel.votes)
             }
         }
     }

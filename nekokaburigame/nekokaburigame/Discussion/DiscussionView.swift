@@ -68,7 +68,7 @@ struct DiscussionView: View {
             .padding()
         }
         .navigationDestination(isPresented: $viewModel.isDiscussionFinished) {
-                        VoteView(playerNames: playerNames)
-                    }
+            VoteView() 
+        }
     }
 }

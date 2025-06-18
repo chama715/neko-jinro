@@ -9,8 +9,6 @@ import SwiftUI
 
 struct VoteView: View {
     
-    let playerNames: [String]
-    
     @StateObject private var viewModel = VoteViewModel()
     var body: some View {
         ZStack {
@@ -55,12 +53,12 @@ struct VoteView: View {
                         .padding(.horizontal)
                 }
             }
+            .navigationDestination(isPresented: $viewModel.goToVote) {
+                VoteStartView(playerNames: viewModel.playerNames)
+            }
             
             .navigationDestination(isPresented: $viewModel.goToExecution) {
                 ExecutionView()
-            }
-            .navigationDestination(isPresented: $viewModel.goToVote) {
-                VoteStartView()
             }
         }
     }

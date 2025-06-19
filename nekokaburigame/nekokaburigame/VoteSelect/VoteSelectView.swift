@@ -12,6 +12,7 @@ struct VoteSelectView: View {
     @Binding var currentIndex: Int
     @Binding var isGoToVote: Bool
     @Binding var isGoToVoteCheck: Bool
+    @ObservedObject var startViewModel: VoteStartViewViewModel
     @StateObject private var viewModel = VoteSelectViewModel()
 
     var body: some View {
@@ -49,7 +50,9 @@ struct VoteSelectView: View {
                 .frame(width: 400, height: 300)
 
                 Button("投票&次のプレイヤーへ") {
-                    viewModel.vote(for: viewModel.selectedPlayer)
+                    if let selected = viewModel.selectedPlayer {
+                        startViewModel.recordVote(for: selected) 
+                    }
 
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         if currentIndex + 1 < playerNames.count {

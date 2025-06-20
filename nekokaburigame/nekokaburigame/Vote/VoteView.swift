@@ -39,22 +39,6 @@ struct VoteView: View {
                         .cornerRadius(12)
                         .padding(.horizontal)
                 }
-                Text("処刑するプレイヤーが話し合いで\n決まっている場合は、こちらから\n選択することも可能です。")
-                    .font(.title3)
-                    .bold()
-                    .padding()
-                
-                Button(action: {
-                    viewModel.goToExecution = true
-                }) {
-                    Text("プレイヤー選択画面へ")
-                        .font(.title2)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                        .padding(.horizontal)
-                }
             }
             .navigationDestination(isPresented: $viewModel.goToVote) {
                 VoteStartView(
@@ -62,10 +46,6 @@ struct VoteView: View {
                     assignedRoles: assignedRoles,
                     path: $path
                 )
-            }
-            
-            .navigationDestination(isPresented: $viewModel.goToExecution) {
-                ExecutionView()
             }
         }
     }

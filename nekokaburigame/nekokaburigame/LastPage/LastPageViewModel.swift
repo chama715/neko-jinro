@@ -10,8 +10,8 @@ import Foundation
 @MainActor
 class LastPageViewModel: ObservableObject {
     let playerNames: [String]
-    let assignedRoles: [Role]         // 勝敗に使う
-    let originalRoles: [Role]         // 表示に使う
+    let assignedRoles: [Role]
+    let originalRoles: [Role]
     let executedPlayerName: String
 
     init(playerNames: [String], assignedRoles: [Role], originalRoles: [Role], executedPlayerName: String) {
@@ -45,7 +45,7 @@ class LastPageViewModel: ObservableObject {
             }
         }
 
-        let executedRole = assignedRoles[executedIndex] // ← 勝敗は assignedRoles で判定
+        let executedRole = assignedRoles[executedIndex] 
         let humanWin = (executedRole == .robcat || executedRole == .bosscat || executedRole == .noracat)
 
         return playerNames.indices.map { i in

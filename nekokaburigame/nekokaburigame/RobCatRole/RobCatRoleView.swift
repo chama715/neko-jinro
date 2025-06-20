@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RobCatRoleView: View {
-    // RoleCheckStartViewModelのPublishedを反映。
+
     @ObservedObject var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -51,7 +51,7 @@ struct RobCatRoleView: View {
             }
             .padding()
         }
-        // 画面遷移。
+
         .navigationDestination(isPresented: $viewModel.isGoRobCatText) {
             RobCatTextView(viewModel: viewModel)
         }

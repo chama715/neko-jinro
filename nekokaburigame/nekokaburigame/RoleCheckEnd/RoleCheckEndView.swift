@@ -11,7 +11,6 @@ struct RoleCheckEndView: View {
     let playerNames: [String]
     let viewModel: RoleCheckStartViewModel
     @Binding var path: NavigationPath
-    // この画面専用のViewModel
     @StateObject private var endViewModel = RoleCheckEndViewModel()
     
     var body: some View {

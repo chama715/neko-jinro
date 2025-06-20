@@ -11,7 +11,7 @@ struct AnnouncementView: View {
     let executedPlayerName: String
     let playerNames: [String]
     let assignedRoles: [Role]
-    let originalRoles: [Role]            // ← 追加！！
+    let originalRoles: [Role]
     @ObservedObject var viewModel: AnnouncementViewModel
     @State private var isGoToLastPage = false
     @Binding var path: NavigationPath

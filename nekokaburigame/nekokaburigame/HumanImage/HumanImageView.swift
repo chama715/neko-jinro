@@ -5,7 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
-// この画面も、特に必要なテクニックはなし。
 
 import SwiftUI
 
@@ -33,7 +32,6 @@ struct HumanImageView: View {
                     .foregroundColor(.black)
                     .padding(40)
 
-                // 画面遷移。条件とかないから、NavigationLinkで。
                 NavigationLink(destination: HumanTextView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)

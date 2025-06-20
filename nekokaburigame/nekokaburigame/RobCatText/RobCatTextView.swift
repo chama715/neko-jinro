@@ -18,19 +18,16 @@ struct RobCatTextView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
-                // 役職をうまく入れ替えられていれば
                 if let swappedIndex = viewModel.swappedPlayerIndex,
                    swappedIndex < viewModel.playerNames.count,
                    let originalRole = viewModel.swappedPlayerOriginalRole {
                     
-                    // 入れ替えたプレイヤーを表示。
                     Text("役職を入れ替えた相手は\n\(viewModel.playerNames[swappedIndex]) です。")
                         .font(.title2)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .padding()
                     
-                    // 入れ替えたプレイヤーの役職を表示。
                     Text("\(viewModel.playerNames[swappedIndex]) の役職は \(originalRole.displayName) でした。")
                         .font(.title3)
                         .foregroundColor(.black)

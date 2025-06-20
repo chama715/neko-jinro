@@ -29,7 +29,6 @@ struct VoteView: View {
                 
                 Button(action: {
                     viewModel.goToVote = true
-                    // 投票画面へ遷移
                 }) {
                     Text("投票画面へ")
                         .font(.title2)

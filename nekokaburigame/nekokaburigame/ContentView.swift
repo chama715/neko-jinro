@@ -19,10 +19,11 @@ struct ContentView: View {
                     switch route {
                     case .title:
                         TitleView(path: $path)
-                    case .last(let playerNames, let assignedRoles, let executedPlayerName):
+                    case .last(let playerNames, let assignedRoles, let originalRoles, let executedPlayerName):
                         let viewModel = LastPageViewModel(
                             playerNames: playerNames,
                             assignedRoles: assignedRoles,
+                            originalRoles: originalRoles,
                             executedPlayerName: executedPlayerName
                         )
                         LastPageView(viewModel: viewModel, path: $path)

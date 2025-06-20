@@ -27,6 +27,9 @@ class RoleCheckStartViewModel: ObservableObject {
     @Published var originalSwappedRole: Role? = nil // 上記と同じ。
     @Published var originalSwappedIndex: Int? = nil // ボス猫が誰の役職を見たか。
     @Published var bossCatIndex: Int? = nil // ボス猫が誰か。
+    @Published var originalRoles: [Role]? = nil
+
+
     
     @Published var isAllFinished = false // 役職確認終了後、話し合いの画面に遷移するためのやつ
 
@@ -76,29 +79,46 @@ class RoleCheckStartViewModel: ObservableObject {
     
     // 人間が、もう1人の人間は誰かを表示させるための関数。
     func otherHumanName() -> String {
-        guard assignedRoles.indices.contains(currentIndex),
-              assignedRoles[currentIndex] == .human else {
+        let rolesToUse = originalRoles ?? assignedRoles
+
+        guard rolesToUse.indices.contains(currentIndex),
+              rolesToUse[currentIndex] == .human else {
             return ""
         }
-        for (index, role) in assignedRoles.enumerated() {
+
+        for (index, role) in rolesToUse.enumerated() {
             if role == .human && index != currentIndex {
                 return playerNames[index]
             }
         }
+
         return ""
     }
     
     // 泥棒猫が役職を入れ替える処理。誰と入れ替えたのかを保存しておく。
     func swapRole(with index: Int) {
         let thiefIndex = currentIndex
-        
+
+        if originalRoles == nil {
+            originalRoles = assignedRoles
+        }
+
         swappedPlayerOriginalRole = assignedRoles[index]
         swappedPlayerIndex = index
-        originalSwappedIndex = index
-        originalSwappedRole = assignedRoles[index] // もともとの役職
+        originalSwappedRole = assignedRoles[index]
+
         assignedRoles.swapAt(thiefIndex, index)
         isGoRobCatText = true
     }
+
     
+    func displayedRole(at index: Int) -> Role {
+        if let original = originalRoles {
+            return original[index]
+        } else {
+            return assignedRoles[index]
+        }
+    }
+
     
 }

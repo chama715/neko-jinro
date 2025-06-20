@@ -10,11 +10,11 @@ import SwiftUI
 struct AnnouncementView: View {
     let executedPlayerName: String
     let playerNames: [String]
+    let assignedRoles: [Role]
+    let originalRoles: [Role]            // ← 追加！！
     @ObservedObject var viewModel: AnnouncementViewModel
     @State private var isGoToLastPage = false
-    let assignedRoles: [Role]
     @Binding var path: NavigationPath
-
 
     var body: some View {
         ZStack {
@@ -52,9 +52,10 @@ struct AnnouncementView: View {
                 viewModel: LastPageViewModel(
                     playerNames: playerNames,
                     assignedRoles: assignedRoles,
+                    originalRoles: originalRoles,
                     executedPlayerName: executedPlayerName
                 ),
-                path: $path 
+                path: $path
             )
         }
     }

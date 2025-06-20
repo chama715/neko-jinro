@@ -10,12 +10,14 @@ import Foundation
 @MainActor
 class LastPageViewModel: ObservableObject {
     let playerNames: [String]
-    let assignedRoles: [Role]
+    let assignedRoles: [Role]         // 勝敗に使う
+    let originalRoles: [Role]         // 表示に使う
     let executedPlayerName: String
 
-    init(playerNames: [String], assignedRoles: [Role], executedPlayerName: String) {
+    init(playerNames: [String], assignedRoles: [Role], originalRoles: [Role], executedPlayerName: String) {
         self.playerNames = playerNames
         self.assignedRoles = assignedRoles
+        self.originalRoles = originalRoles
         self.executedPlayerName = executedPlayerName
     }
 
@@ -38,18 +40,20 @@ class LastPageViewModel: ObservableObject {
         guard let executedIndex = playerNames.firstIndex(of: executedPlayerName),
               executedIndex < assignedRoles.count else {
             return playerNames.enumerated().map { (i, name) in
-                let role = (i < assignedRoles.count) ? assignedRoles[i] : .human
+                let role = (i < originalRoles.count) ? originalRoles[i] : .human
                 return (name, role, "不明")
             }
         }
 
-        let executedRole = assignedRoles[executedIndex]
+        let executedRole = assignedRoles[executedIndex] // ← 勝敗は assignedRoles で判定
         let humanWin = (executedRole == .robcat || executedRole == .bosscat || executedRole == .noracat)
 
-        return zip(playerNames, assignedRoles).map { name, role in
-            let isHumanTeam = (role == .human)
+        return playerNames.indices.map { i in
+            let displayRole = (i < originalRoles.count) ? originalRoles[i] : .human
+            let judgeRole   = (i < assignedRoles.count) ? assignedRoles[i] : .human
+            let isHumanTeam = (judgeRole == .human)
             let didWin = (humanWin && isHumanTeam) || (!humanWin && !isHumanTeam)
-            return (name, role, didWin ? "勝ち！" : "負け")
+            return (playerNames[i], displayRole, didWin ? "勝ち！" : "負け")
         }
     }
 }

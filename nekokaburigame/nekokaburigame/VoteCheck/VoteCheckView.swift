@@ -45,11 +45,16 @@ struct VoteCheckView: View {
                     let topCandidates = viewModel.mostVotedPlayers()
 
                     if topCandidates.count == 1 {
-                        // 通常の発表へ
-                        executedPlayerName = topCandidates.first!
-                        isGoToAnnouncement = true
+                        let executed = topCandidates.first!
+                        path.append(
+                            Route.last(
+                                playerNames: playerNames,
+                                assignedRoles: assignedRoles,
+                                originalRoles: assignedRoles,
+                                executedPlayerName: executed
+                            )
+                        )
                     } else {
-                        // 同票 → 決選投票へ
                         candidatesForTieBreak = topCandidates
                         isGoToTieBreak = true
                     }
@@ -60,19 +65,6 @@ struct VoteCheckView: View {
                 .foregroundColor(.white)
                 .cornerRadius(12)
             }
-        }
-        .navigationDestination(isPresented: $isGoToAnnouncement) {
-            AnnouncementView(
-                executedPlayerName: executedPlayerName,
-                playerNames: playerNames,
-                viewModel: {
-                    let vm = AnnouncementViewModel()
-                    vm.assignedRoles = assignedRoles
-                    return vm
-                }(),
-                assignedRoles: assignedRoles,
-                path: $path
-            )
         }
 
         .navigationDestination(isPresented: $isGoToTieBreak) {

@@ -9,5 +9,5 @@ import Foundation
 
 enum Route: Hashable {
     case title
-    case last(playerNames: [String], assignedRoles: [Role], executedPlayerName: String)
+    case last(playerNames: [String], assignedRoles: [Role], originalRoles: [Role], executedPlayerName: String)
 }

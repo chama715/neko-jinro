@@ -20,18 +20,10 @@ struct BossCatTextView: View {
             VStack(spacing: 30) {
 
                 if let seen = viewModel.selectedViewedIndex,
-                   seen >= 0 && seen < viewModel.playerNames.count && seen < viewModel.assignedRoles.count,
+                   seen >= 0 && seen < viewModel.playerNames.count,
                    viewModel.currentIndex == viewModel.bossCatIndex {
 
-                    let roleToShow: Role = {
-                        if let swappedIndex = viewModel.swappedPlayerIndex,
-                           swappedIndex == seen,
-                           let original = viewModel.swappedPlayerOriginalRole {
-                            return original
-                        } else {
-                            return viewModel.assignedRoles[seen]
-                        }
-                    }()
+                    let roleToShow = viewModel.displayedRole(at: seen)
 
                     Text("\(viewModel.playerNames[seen])の役職は「\(roleToShow.displayName)」でした。")
                         .font(.title2)
@@ -49,7 +41,6 @@ struct BossCatTextView: View {
                         .padding()
                 }
 
-                // ③ それ以外
                 else {
                     Text("表示できる情報がありません。")
                         .foregroundColor(.gray)

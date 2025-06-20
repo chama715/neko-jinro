@@ -18,23 +18,13 @@ struct NoraCatTextView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
-                // 自分が泥棒猫に役職を奪われたのかのチェック。(知らされはしない)。一致しているか？
-                if viewModel.currentIndex == viewModel.swappedPlayerIndex,
-                   let original = viewModel.originalSwappedRole {
-                    // 入れ替えられてたらこっち
-                    Text("あなたの役職は「\(original.displayName)」です。")
-                        .font(.title2)
-                        .foregroundColor(.black)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                } else {
-                    // 入れ替えられてなければこっち
-                    Text("あなたの役職は「野良猫」です。")
-                        .font(.title2)
-                        .foregroundColor(.black)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                }
+                let role = viewModel.displayedRole(at: viewModel.currentIndex)
+
+                Text("あなたの役職は「\(role.displayName)」です。")
+                    .font(.title2)
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+                    .padding()
 
                 Text("野良猫には特別なアクションはありません。\n話し合いで人間を見つけ出しましょう！")
                     .font(.title3)

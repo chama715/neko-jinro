@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct PlayCountView: View {
-    
+    @Binding var path: NavigationPath
     // 裏にあるViewModelを監視。
     @StateObject private var viewModel = PlayCountViewModel()
     
@@ -59,8 +59,12 @@ struct PlayCountView: View {
             }
             // 画面遷移。playerNameを渡す。
             .navigationDestination(isPresented: $viewModel.isGameReadyActive) {
-                GameReadyView(playerNames: viewModel.playerName)
+                GameReadyView(
+                    playerNames: viewModel.playerName,
+                    path: $path
+                )
             }
+
             
             // startGameを実行→isGameReadyActiveがtrue
             Button(action: {
@@ -77,8 +81,3 @@ struct PlayCountView: View {
         }
     }
 }
-
-#Preview {
-    PlayCountView()
-}
-

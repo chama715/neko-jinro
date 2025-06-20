@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DiscussionView: View {
     let playerNames: [String]
+    let assignedRoles: [Role]
+    @Binding var path: NavigationPath
     @StateObject private var viewModel = DiscussionViewModel()
 
     var body: some View {
@@ -68,7 +70,12 @@ struct DiscussionView: View {
             .padding()
         }
         .navigationDestination(isPresented: $viewModel.isDiscussionFinished) {
-            VoteView() 
+            VoteView(
+                playerNames: playerNames,
+                assignedRoles: assignedRoles,
+                path: $path 
+            )
         }
+
     }
 }

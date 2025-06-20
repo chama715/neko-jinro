@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RoleCheckStartView: View {
+    
+    @Binding var path: NavigationPath
     // viewModelを監視しているし、がちゃんこしている。
     @ObservedObject var viewModel: RoleCheckStartViewModel
     
@@ -60,8 +62,13 @@ struct RoleCheckStartView: View {
             }
         }
         .navigationDestination(isPresented: $viewModel.isAllFinished) {
-            RoleCheckEndView(playerNames: viewModel.playerNames)
+            RoleCheckEndView(
+                playerNames: viewModel.playerNames,
+                viewModel: viewModel,
+                path: $path
+            )
         }
+
         
         
     }

@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct VoteView: View {
-    
+    let playerNames: [String]
+    let assignedRoles: [Role]
     @StateObject private var viewModel = VoteViewModel()
+    @Binding var path: NavigationPath
+
     var body: some View {
         ZStack {
             Image(.background)
@@ -54,7 +57,11 @@ struct VoteView: View {
                 }
             }
             .navigationDestination(isPresented: $viewModel.goToVote) {
-                VoteStartView(playerNames: viewModel.playerNames)
+                VoteStartView(
+                    playerNames: playerNames,
+                    assignedRoles: assignedRoles,
+                    path: $path
+                )
             }
             
             .navigationDestination(isPresented: $viewModel.goToExecution) {

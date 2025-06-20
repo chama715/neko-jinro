@@ -9,5 +9,5 @@ import Foundation
 
 @MainActor
 class AnnouncementViewModel: ObservableObject {
-    
+    var assignedRoles: [Role] = []
 }

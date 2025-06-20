@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct VoteCheckView: View {
-    let votes: [String] // 🔸追加！
+    let votes: [String]
+    let playerNames: [String]
+    let assignedRoles: [Role]
+    @Binding var path: NavigationPath
+
     @StateObject private var viewModel: VoteCheckViewModel
     @State private var isGoToAnnouncement = false
 
-    init(votes: [String]) {
+    init(votes: [String], playerNames: [String], assignedRoles: [Role], path: Binding<NavigationPath>) {
         self.votes = votes
-        _viewModel = StateObject(wrappedValue: VoteCheckViewModel(votes: votes)) // 🔥 ここがポイント！
+        self.playerNames = playerNames
+        self.assignedRoles = assignedRoles
+        self._path = path // ← これを忘れずに！！
+        
+        _viewModel = StateObject(wrappedValue: VoteCheckViewModel(votes: votes))
     }
 
     var body: some View {
@@ -31,9 +39,19 @@ struct VoteCheckView: View {
                     .padding()
 
                 NavigationLink(
-                    destination: AnnouncementView(
-                        executedPlayerName: viewModel.mostVotedPlayer()
-                    ),
+                    destination: {
+                        let announcementVM = AnnouncementViewModel()
+                        announcementVM.assignedRoles = assignedRoles
+
+                        return AnnouncementView(
+                            executedPlayerName: viewModel.mostVotedPlayer(),
+                            playerNames: playerNames,
+                            viewModel: announcementVM,
+                            assignedRoles: assignedRoles,
+                            path: $path
+                        )
+
+                    }(),
                     isActive: $isGoToAnnouncement
                 ) {
                     Text("結果発表")
@@ -43,6 +61,7 @@ struct VoteCheckView: View {
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }
+
             }
         }
     }

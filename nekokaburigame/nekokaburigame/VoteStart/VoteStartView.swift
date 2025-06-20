@@ -9,11 +9,12 @@ import SwiftUI
 
 struct VoteStartView: View {
     let playerNames: [String]
+    let assignedRoles: [Role]
     @State private var isGoToVoteSelect = false
     @State private var currentIndex = 0
     @State private var isGoToVoteCheck = false
     @StateObject private var viewModel = VoteStartViewViewModel()
-
+    @Binding var path: NavigationPath
 
 
     var body: some View {
@@ -64,7 +65,13 @@ struct VoteStartView: View {
 
 
             .navigationDestination(isPresented: $isGoToVoteCheck) {
-                VoteCheckView(votes: viewModel.votes)
+                VoteCheckView(
+                    votes: viewModel.votes,
+                    playerNames: playerNames,
+                    assignedRoles: assignedRoles,
+                    path: $path
+                )
+
             }
         }
     }

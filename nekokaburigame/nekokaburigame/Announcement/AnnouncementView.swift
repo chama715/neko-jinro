@@ -8,33 +8,35 @@
 import SwiftUI
 
 struct AnnouncementView: View {
-    
     let executedPlayerName: String
-    
-    @StateObject private var viewModel = AnnouncementViewModel()
-    @State private var isGoToAnnouncement = false
-    
+    let playerNames: [String]
+    @ObservedObject var viewModel: AnnouncementViewModel
+    @State private var isGoToLastPage = false
+    let assignedRoles: [Role]
+    @Binding var path: NavigationPath
+
+
     var body: some View {
         ZStack {
             Image(.background)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
-            
+
             VStack(spacing: 20) {
                 Text("投票の結果、以下のプレイヤーが\n処刑されることになりました。")
                     .font(.title3)
                     .bold()
                     .padding()
-                
+
                 Text(executedPlayerName)
                     .font(.title)
                     .bold()
                     .padding()
                     .underline()
-                
+
                 Button(action: {
-                    isGoToAnnouncement = true
+                    isGoToLastPage = true
                 }) {
                     Text("結果発表")
                         .font(.title2)
@@ -45,6 +47,15 @@ struct AnnouncementView: View {
                 }
             }
         }
-       // 画面遷移(あれば)
+        .navigationDestination(isPresented: $isGoToLastPage) {
+            LastPageView(
+                viewModel: LastPageViewModel(
+                    playerNames: playerNames,
+                    assignedRoles: assignedRoles,
+                    executedPlayerName: executedPlayerName
+                ),
+                path: $path 
+            )
+        }
     }
 }

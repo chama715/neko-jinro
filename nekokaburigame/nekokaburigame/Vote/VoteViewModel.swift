@@ -11,5 +11,5 @@ import Foundation
 class VoteViewModel: ObservableObject {
     @Published var goToExecution = false
     @Published var goToVote = false
-    var playerNames: [String] = ["A","B","C"]
+    @Published var assignedRoles: [Role] = []
 }

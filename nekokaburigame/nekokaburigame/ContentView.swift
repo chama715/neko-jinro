@@ -10,9 +10,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var path = NavigationPath()
+
     var body: some View {
-        NavigationStack {
-            TitleView()
+        NavigationStack(path: $path) {
+            TitleView(path: $path)
+                .navigationDestination(for: Route.self) { route in
+                    switch route {
+                    case .title:
+                        TitleView(path: $path)
+                    case .last(let playerNames, let assignedRoles, let executedPlayerName):
+                        let viewModel = LastPageViewModel(
+                            playerNames: playerNames,
+                            assignedRoles: assignedRoles,
+                            executedPlayerName: executedPlayerName
+                        )
+                        LastPageView(viewModel: viewModel, path: $path)
+                    }
+                }
         }
     }
 }
+

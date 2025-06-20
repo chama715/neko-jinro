@@ -11,6 +11,7 @@ import SwiftUI
 
 // TitleViewという画面を定義。Viewのファイルは全てこれからはじまるのである。
 struct TitleView: View {
+    @Binding var path: NavigationPath
     // ObseevableObjectのクラスの所有権を持っているというか、監視できるというか。
     @StateObject private var viewModel = TitleViewModel()
     
@@ -50,12 +51,9 @@ struct TitleView: View {
             .padding()
             //  新しい画面遷移の方法。.navigationDestination(isPresented:$フラグ) { 遷移先のView() }を遷移元のViewに入力。ViewModelにデフォがfalseの状態変数と、フラグがtrueになる関数をセットする。
             .navigationDestination(isPresented: $viewModel.isGameStarted) {
-                PlayCountView()
+                PlayCountView(path: $path)
             }
+
         }
     }
-}
-
-#Preview {
-    TitleView()
 }

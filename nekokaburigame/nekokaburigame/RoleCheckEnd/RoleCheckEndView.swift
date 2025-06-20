@@ -9,8 +9,11 @@ import SwiftUI
 
 struct RoleCheckEndView: View {
     let playerNames: [String]
-    // この画面専用のViewModelを生成し、保持する。
-    @StateObject private var viewModel = RoleCheckEndViewModel()
+    let viewModel: RoleCheckStartViewModel
+    @Binding var path: NavigationPath
+    // この画面専用のViewModel
+    @StateObject private var endViewModel = RoleCheckEndViewModel()
+    
     var body: some View {
         ZStack {
             Image(.background)
@@ -31,10 +34,8 @@ struct RoleCheckEndView: View {
                     .font(.title3)
                     .padding()
                 
-                
-                // ボタンを押すことで画面遷移する。関数が呼び出されることでfalseがtrueになり、遷移する。
                 Button(action: {
-                    viewModel.startGame()
+                    endViewModel.startGame()
                 }) {
                     Text("話し合いを開始する")
                         .font(.title2)
@@ -46,8 +47,13 @@ struct RoleCheckEndView: View {
                 }
             }
         }
-        .navigationDestination(isPresented: $viewModel.isGameStarted) {
-            DiscussionView(playerNames: playerNames)
+        .navigationDestination(isPresented: $endViewModel.isGameStarted) {
+            DiscussionView(
+                playerNames: playerNames,
+                assignedRoles: viewModel.assignedRoles,
+                path: $path
+            )
         }
+
     }
 }

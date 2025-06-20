@@ -15,13 +15,16 @@ struct VoteCheckView: View {
 
     @StateObject private var viewModel: VoteCheckViewModel
     @State private var isGoToAnnouncement = false
+    @State private var isGoToTieBreak = false
+    @State private var executedPlayerName: String = ""
+    @State private var candidatesForTieBreak: [String] = []
 
     init(votes: [String], playerNames: [String], assignedRoles: [Role], path: Binding<NavigationPath>) {
         self.votes = votes
         self.playerNames = playerNames
         self.assignedRoles = assignedRoles
-        self._path = path // ← これを忘れずに！！
-        
+        self._path = path
+
         _viewModel = StateObject(wrappedValue: VoteCheckViewModel(votes: votes))
     }
 
@@ -38,31 +41,47 @@ struct VoteCheckView: View {
                     .bold()
                     .padding()
 
-                NavigationLink(
-                    destination: {
-                        let announcementVM = AnnouncementViewModel()
-                        announcementVM.assignedRoles = assignedRoles
+                Button("結果発表") {
+                    let topCandidates = viewModel.mostVotedPlayers()
 
-                        return AnnouncementView(
-                            executedPlayerName: viewModel.mostVotedPlayer(),
-                            playerNames: playerNames,
-                            viewModel: announcementVM,
-                            assignedRoles: assignedRoles,
-                            path: $path
-                        )
-
-                    }(),
-                    isActive: $isGoToAnnouncement
-                ) {
-                    Text("結果発表")
-                        .font(.title2)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
+                    if topCandidates.count == 1 {
+                        // 通常の発表へ
+                        executedPlayerName = topCandidates.first!
+                        isGoToAnnouncement = true
+                    } else {
+                        // 同票 → 決選投票へ
+                        candidatesForTieBreak = topCandidates
+                        isGoToTieBreak = true
+                    }
                 }
-
+                .font(.title2)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(12)
             }
+        }
+        .navigationDestination(isPresented: $isGoToAnnouncement) {
+            AnnouncementView(
+                executedPlayerName: executedPlayerName,
+                playerNames: playerNames,
+                viewModel: {
+                    let vm = AnnouncementViewModel()
+                    vm.assignedRoles = assignedRoles
+                    return vm
+                }(),
+                assignedRoles: assignedRoles,
+                path: $path
+            )
+        }
+
+        .navigationDestination(isPresented: $isGoToTieBreak) {
+            TieBreakVoteView(
+                candidates: candidatesForTieBreak,
+                playerNames: playerNames,
+                assignedRoles: assignedRoles,
+                path: $path
+            )
         }
     }
 }

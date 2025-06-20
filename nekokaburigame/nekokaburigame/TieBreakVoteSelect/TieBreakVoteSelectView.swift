@@ -1,0 +1,82 @@
+//
+//  TieBreakVoteSelectView.swift
+//  nekokaburigame
+//
+//  Created by 高橋直斗 on 2025/06/20.
+//
+
+import SwiftUI
+
+struct TieBreakVoteSelectView: View {
+    let candidates: [String]
+    let playerNames: [String]
+    let assignedRoles: [Role]
+    @Binding var path: NavigationPath
+
+    @State private var currentIndex = 0
+    @State private var votes: [String] = []
+    @State private var selectedName: String = ""
+    @State private var isGoToCheck = false
+
+    var body: some View {
+        ZStack {
+            Image(.background)
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+
+            VStack(spacing: 20) {
+                if currentIndex < playerNames.count {
+                    Text("\(playerNames[currentIndex]) さん\n投票してください")
+                        .font(.title3)
+                        .bold()
+                        .multilineTextAlignment(.center)
+
+                    ForEach(candidates, id: \.self) { name in
+                        Button(action: {
+                            selectedName = name
+                        }) {
+                            Text(name)
+                                .font(.title2)
+                                .padding()
+                                .frame(width: 350)
+                                .background(selectedName == name ? Color.green : Color.white)
+                                .foregroundColor(.black)
+                                .cornerRadius(12)
+                        }
+                    }
+
+                    Button("決定して次へ") {
+                        guard !selectedName.isEmpty else { return }
+
+                        votes.append(selectedName)
+                        selectedName = ""
+
+                        if currentIndex < playerNames.count - 1 {
+                            currentIndex += 1
+                        } else {
+                            isGoToCheck = true
+                        }
+                    }
+                    .font(.title3)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+
+                } else {
+                    Text("全員の投票が完了しました")
+                }
+            }
+            .padding()
+        }
+        .navigationDestination(isPresented: $isGoToCheck) {
+            VoteCheckView(
+                votes: votes,
+                playerNames: playerNames,
+                assignedRoles: assignedRoles,
+                path: $path
+            )
+        }
+    }
+}

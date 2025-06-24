@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RobCatImageView: View {
+    // ViewModelの引き継ぎ。
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -31,6 +32,7 @@ struct RobCatImageView: View {
                     .foregroundColor(.black)
                     .padding(40)
 
+                // 画面遷移。
                 NavigationLink(destination: RobCatRoleView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)

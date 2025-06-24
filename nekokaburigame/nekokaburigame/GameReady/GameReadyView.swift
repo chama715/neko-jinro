@@ -8,17 +8,17 @@
 /*
  ゲーム開始前の画面。
  プレイヤーごとに役職を確認してもらう画面。
+ 前の画面で作成したプレイヤー名の配列を引き継ぎするプロパティ、ViewModelのプロパティ、タイトル戻りのためのプロパティを定義。
+ ボタンを押すと、各プレイヤー用の役職確認画面に遷移。全員確認が終わったら、話し合いの画面へ推移。
  */
 
 import SwiftUI
 
 struct GameReadyView: View {
-    // 前画面から受け取ったプレイヤー名の配列。
     let playerNames: [String]
-    // GameareadyViewModelというインスタンスを生成。StateObjectとして管理することで、ViewModelの動きを表のViewで反映させられる。
     @StateObject private var viewModel = GameReadyViewModel()
-    // ナビゲーションパスを親ビューから受け取っている。ほぼ全ての画面で必要。
     @Binding var path: NavigationPath
+    
     var body: some View {
         ZStack {
             Image(.background)
@@ -32,8 +32,7 @@ struct GameReadyView: View {
                     .font(.title3)
                     .bold()
                     .padding()
-                
-                // ボタンを押すとviewModelのstartGameが実行される。引数playerName・
+
                 Button(action: {
                     viewModel.startGame(with: playerNames)
                 }) {
@@ -47,12 +46,10 @@ struct GameReadyView: View {
                 }
             }
 
-            // isGameReadyがtrueになったら、RoleCheckStartViewに画面遷移。
             .navigationDestination(isPresented: $viewModel.isGameReady) {
                 RoleCheckStartView(path: $path,viewModel: viewModel.rolechekStartviewModel)
             }
             
-            // goToVotePhaseがtrueになったら、RoleCheckStartViewに画面遷移。役職確認が終わったら、次の画面へ。
             .navigationDestination(isPresented: $viewModel.goToVotePhase) {
                 VoteView(playerNames: playerNames,assignedRoles: Array(viewModel.assignedRoles),path: $path)
             }

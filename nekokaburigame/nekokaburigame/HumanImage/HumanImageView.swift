@@ -9,10 +9,12 @@
 import SwiftUI
 
 struct HumanImageView: View {
+    // RoleCheckStartViewModelを引き継いで使わせてもらっている。
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
         ZStack {
+            // 人間用の画像。これもズレるため左右の調整。
             Image(.human)
                 .resizable()
                 .scaledToFill()
@@ -32,6 +34,7 @@ struct HumanImageView: View {
                     .foregroundColor(.black)
                     .padding(40)
 
+                // 次の画面へ
                 NavigationLink(destination: HumanTextView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)

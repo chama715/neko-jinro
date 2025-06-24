@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RobCatRoleView: View {
 
+    // ViewModelを外部から受け取る。引き継ぎ。
     @ObservedObject var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -28,12 +29,12 @@ struct RobCatRoleView: View {
                     .font(.title3)
                     .foregroundColor(.black)
 
-                // プレイヤーをリスト化。
+                // viewmodelのプレイヤー名の数のインデックスを使い、繰り返しの処理。
                 ForEach(viewModel.playerNames.indices, id: \.self) { index in
-                    // 自分以外。
+                    // 自分は選ばない。
                     if index != viewModel.currentIndex {
+                        // 名前と入れ替えるぼんたんを横並びに。
                         HStack {
-                            // プレイヤー名と入れ替えるボタンを横並びに。
                             Text(viewModel.playerNames[index])
                                 .font(.body)
                                 .foregroundColor(.black)
@@ -52,6 +53,7 @@ struct RobCatRoleView: View {
             .padding()
         }
 
+        // 画面遷移。
         .navigationDestination(isPresented: $viewModel.isGoRobCatText) {
             RobCatTextView(viewModel: viewModel)
         }

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct NoraCatView: View {
 
+    // 画面遷移のためのフラグ。
     @State private var goToImage = false
+    // RoleCheckStartViewModelを引き継ぎ。
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -28,6 +30,7 @@ struct NoraCatView: View {
             .cornerRadius(12)
         }
         
+        // 画面遷移。
         .navigationDestination(isPresented: $goToImage) {
             NoraCatImageView(viewModel: viewModel)
         }

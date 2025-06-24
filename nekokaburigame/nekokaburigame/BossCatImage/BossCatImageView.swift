@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct BossCatImageView: View {
+    // お馴染みの引き継ぎ。
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
         ZStack {
+            // ボス猫用の画像
             Image(.bosscat)
                 .resizable()
                 .scaledToFill()
@@ -31,6 +33,7 @@ struct BossCatImageView: View {
                     .foregroundColor(.black)
                     .padding(40)
 
+                // シンプルな画面遷移。
                 NavigationLink(destination: BossCatRoleView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)

@@ -9,11 +9,14 @@ import SwiftUI
 
 struct RoleCheckStartView: View {
     
+    // NavigationStackのpathを親ビュー(ContentView)から受け取っている。
     @Binding var path: NavigationPath
+    // RoleCheckStartViewModelというインスタンスを生成。このViewの動きは、裏にあるViewModelによって制御されている！
     @ObservedObject var viewModel: RoleCheckStartViewModel
     
     var body: some View {
         ZStack {
+            // いつもと違う背景をチョイス。なぜか左右にずれてしまっているので、左に40寄せている。
             Image(.nikukyu)
                 .resizable()
                 .scaledToFill()
@@ -26,12 +29,14 @@ struct RoleCheckStartView: View {
                     .foregroundStyle(.white)
                     .frame(maxHeight: 450, alignment: .top)
                 
+                // 今のプレイヤーを表示。
                 Text(viewModel.currentPlayerName)
                     .font(.largeTitle)
                     .foregroundStyle(.white)
                     .bold()
                     .padding(24)
                 
+                // 画面遷移用のボタン。trueになり、画面遷移が実行される。
                 Button(action: {
                     viewModel.isGoRoleCheck = true
                 }) {
@@ -46,8 +51,8 @@ struct RoleCheckStartView: View {
             }
         }
 
+        // 通常の画面遷移ではなく、役職ごとに異なる画面に遷移させたいため、switch文を採用。(humanだったらHumanViewみたいな)
         .navigationDestination(isPresented: $viewModel.isGoRoleCheck) {
-
             switch viewModel.displayedRole {
             case .human: HumanView(viewModel: viewModel)
             case .noracat: NoraCatView(viewModel: viewModel)
@@ -56,15 +61,10 @@ struct RoleCheckStartView: View {
             case .none: Text("役職がみつかりません")
             }
         }
+        
+        // 全員が役職の確認を終えると、isAllFinishedがtrueになり、次の画面へ遷移する。
         .navigationDestination(isPresented: $viewModel.isAllFinished) {
-            RoleCheckEndView(
-                playerNames: viewModel.playerNames,
-                viewModel: viewModel,
-                path: $path
-            )
+            RoleCheckEndView(playerNames: viewModel.playerNames,viewModel: viewModel,path: $path)
         }
-
-        
-        
     }
 }

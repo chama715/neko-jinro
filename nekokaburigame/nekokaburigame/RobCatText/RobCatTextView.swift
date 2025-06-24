@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RobCatTextView: View {
+    // RoleCheckStartViewModelを外部から受け取る、引き継ぎ。
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -18,16 +19,19 @@ struct RobCatTextView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
+                //
                 if let swappedIndex = viewModel.swappedPlayerIndex,
                    swappedIndex < viewModel.playerNames.count,
                    let originalRole = viewModel.swappedPlayerOriginalRole {
                     
+                    // 役職を入れ替えた相手をviewModelから取得してきて表示。
                     Text("役職を入れ替えた相手は\n\(viewModel.playerNames[swappedIndex]) です。")
                         .font(.title2)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .padding()
                     
+                    // 上記と同様の感じ。
                     Text("\(viewModel.playerNames[swappedIndex]) の役職は \(originalRole.displayName) でした。")
                         .font(.title3)
                         .foregroundColor(.black)
@@ -39,6 +43,7 @@ struct RobCatTextView: View {
                         .padding()
                 }
 
+                // 画面遷移。
                 Button(action: {
                     viewModel.goToNextPlayer()
                 }) {

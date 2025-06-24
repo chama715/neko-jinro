@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BossCatTextView: View {
+    // RoleCheckStartViewModelを引き継ぎ。
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -19,12 +20,15 @@ struct BossCatTextView: View {
 
             VStack(spacing: 30) {
 
+                //
                 if let seen = viewModel.selectedViewedIndex,
                    seen >= 0 && seen < viewModel.playerNames.count,
                    viewModel.currentIndex == viewModel.bossCatIndex {
 
+                    //
                     let roleToShow = viewModel.displayedRole(at: seen)
 
+                    //
                     Text("\(viewModel.playerNames[seen])の役職は「\(roleToShow.displayName)」でした。")
                         .font(.title2)
                         .foregroundColor(.black)
@@ -32,6 +36,7 @@ struct BossCatTextView: View {
                         .padding()
                 }
 
+                //
                 else if viewModel.currentIndex == viewModel.swappedPlayerIndex,
                         let original = viewModel.originalSwappedRole {
                     Text("あなたの役職は「\(original.displayName)」です。")
@@ -41,12 +46,14 @@ struct BossCatTextView: View {
                         .padding()
                 }
 
+                //
                 else {
                     Text("表示できる情報がありません。")
                         .foregroundColor(.gray)
                         .padding()
                 }
 
+                 // 画面遷移
                 Button(action: {
                     viewModel.goToNextPlayer()
                 }) {

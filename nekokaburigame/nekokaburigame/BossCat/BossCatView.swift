@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct BossCatView: View {
+    // 画面遷移のフラグ。
     @State private var goToImage = false
+    // RoleCheckStartViewModelを親から引き継ぎ。
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -17,6 +19,7 @@ struct BossCatView: View {
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
 
+                // 画面遷移。
                 Button("次へ") {
                     goToImage = true
                 }
@@ -26,6 +29,7 @@ struct BossCatView: View {
                 .foregroundColor(.white)
                 .cornerRadius(12)
             }
+        // 画面遷移。
         .navigationDestination(isPresented: $goToImage) {
             BossCatImageView(viewModel: viewModel)
         }

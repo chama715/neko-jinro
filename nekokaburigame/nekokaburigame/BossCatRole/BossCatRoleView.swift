@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct BossCatRoleView: View {
+    //　RoleCheckStartViewModelを引き継ぎ。
     var viewModel: RoleCheckStartViewModel
+    
+    // ボス猫がどのプレイヤーを選ぶか、を保存しておく状態。
     @State private var selectedIndex: Int? = nil
 
     var body: some View {
@@ -34,10 +37,11 @@ struct BossCatRoleView: View {
                     .multilineTextAlignment(.center)
                     .padding()
 
+                // プレイヤー一覧。
                 ForEach(Array(viewModel.playerNames.enumerated()), id: \.offset) { index, name in
-
                     if index != viewModel.currentIndex {
 
+                        // 名前と見るボタンを横並びに。
                         HStack {
                             Text(name)
                                 .font(.title3)
@@ -45,14 +49,13 @@ struct BossCatRoleView: View {
                                 .foregroundStyle(.black)
                                 .padding()
                             
+                            // 画面遷移
                             NavigationLink(
-                                destination: BossCatTextView(viewModel: viewModel),
-                                tag: index,
-                                selection: $selectedIndex
-                            ) {
+                                destination: BossCatTextView(viewModel: viewModel),tag: index,selection: $selectedIndex) {
                                 EmptyView()
                             }
                             
+                            // ボタンを押すと、選んだプレイヤーのインデックスをViewModelに記録しておく処理を実行。
                             Button("役職を見る") {
                                 viewModel.selectedViewedIndex = index
                                 selectedIndex = index

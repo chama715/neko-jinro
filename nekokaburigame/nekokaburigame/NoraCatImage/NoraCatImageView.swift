@@ -31,6 +31,7 @@ struct NoraCatImageView: View {
                     .foregroundColor(.black)
                     .padding(40)
 
+                // シンプルな画面遷移なので、NavigationLinkを採用。NoraCatTextViewへ遷移。
                 NavigationLink(destination: NoraCatTextView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)

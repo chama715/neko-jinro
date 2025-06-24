@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NoraCatTextView: View {
+    // ViewModelを引き継ぎ。
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -18,8 +19,10 @@ struct NoraCatTextView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
+                //　viewModelから、今表示中の役職の情報を取得。
                 let role = viewModel.displayedRole(at: viewModel.currentIndex)
 
+                // からの表示。野良猫だね。
                 Text("あなたの役職は「\(role.displayName)」です。")
                     .font(.title2)
                     .foregroundColor(.black)
@@ -32,6 +35,7 @@ struct NoraCatTextView: View {
                     .multilineTextAlignment(.center)
                     .padding()
 
+                // 画面遷移。次のプレイヤーへ。
                 Button(action: {
                     viewModel.goToNextPlayer()
                 }) {

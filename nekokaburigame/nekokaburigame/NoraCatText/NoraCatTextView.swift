@@ -5,10 +5,16 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
+/*
+ あなたは野良猫だよということを知らせる画面。
+ 野良猫をroleに代入し、表示。
+ あとは画面遷移。
+ */
+
 import SwiftUI
 
 struct NoraCatTextView: View {
-    // ViewModelを引き継ぎ。
+    
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -19,10 +25,9 @@ struct NoraCatTextView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
-                //　viewModelから、今表示中の役職の情報を取得。
+                
                 let role = viewModel.displayedRole(at: viewModel.currentIndex)
-
-                // からの表示。野良猫だね。
+                
                 Text("あなたの役職は「\(role.displayName)」です。")
                     .font(.title2)
                     .foregroundColor(.black)
@@ -34,8 +39,7 @@ struct NoraCatTextView: View {
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding()
-
-                // 画面遷移。次のプレイヤーへ。
+                
                 Button(action: {
                     viewModel.goToNextPlayer()
                 }) {

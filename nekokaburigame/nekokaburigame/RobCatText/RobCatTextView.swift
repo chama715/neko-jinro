@@ -5,10 +5,16 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
+/*
+前の画面で役職を入れ替えた相手が誰だったかを表示。
+ その入れ替えた相手がなんの役職だったかも表示。
+ 確認を終えたら次の画面へ。
+ */
+
 import SwiftUI
 
 struct RobCatTextView: View {
-    // RoleCheckStartViewModelを外部から受け取る、引き継ぎ。
+    
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -24,14 +30,12 @@ struct RobCatTextView: View {
                    swappedIndex < viewModel.playerNames.count,
                    let originalRole = viewModel.swappedPlayerOriginalRole {
                     
-                    // 役職を入れ替えた相手をviewModelから取得してきて表示。
                     Text("役職を入れ替えた相手は\n\(viewModel.playerNames[swappedIndex]) です。")
                         .font(.title2)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .padding()
                     
-                    // 上記と同様の感じ。
                     Text("\(viewModel.playerNames[swappedIndex]) の役職は \(originalRole.displayName) でした。")
                         .font(.title3)
                         .foregroundColor(.black)
@@ -42,8 +46,7 @@ struct RobCatTextView: View {
                         .foregroundColor(.gray)
                         .padding()
                 }
-
-                // 画面遷移。
+                
                 Button(action: {
                     viewModel.goToNextPlayer()
                 }) {

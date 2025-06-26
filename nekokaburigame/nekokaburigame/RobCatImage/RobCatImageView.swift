@@ -5,10 +5,14 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
+/*
+ あなたは泥棒猫だよということを知らせることと、画面遷移。
+ */
+
 import SwiftUI
 
 struct RobCatImageView: View {
-    // ViewModelの引き継ぎ。
+    
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
@@ -31,8 +35,7 @@ struct RobCatImageView: View {
                     .font(.title)
                     .foregroundColor(.black)
                     .padding(40)
-
-                // 画面遷移。
+                
                 NavigationLink(destination: RobCatRoleView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)

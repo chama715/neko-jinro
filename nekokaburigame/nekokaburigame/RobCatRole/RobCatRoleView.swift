@@ -5,13 +5,18 @@
 //  Created by 高橋直斗 on 2025/06/09.
 //
 
+/*
+ 泥棒猫が役職を入れ替える画面。
+ ForEachとHStackでプレイヤー名とボタンのリストを作成。
+ 入れ替えるボタンを押すと、ViewModelのswapRoleが発動。役職を入れ替え、保存しておいてくれる。
+ */
+
 import SwiftUI
 
 struct RobCatRoleView: View {
-
-    // ViewModelを外部から受け取る。引き継ぎ。
+    
     @ObservedObject var viewModel: RoleCheckStartViewModel
-
+    
     var body: some View {
         ZStack {
             Image(.background)
@@ -28,12 +33,10 @@ struct RobCatRoleView: View {
                 Text("役職を入れ替えるプレイヤーを選んでください")
                     .font(.title3)
                     .foregroundColor(.black)
-
-                // viewmodelのプレイヤー名の数のインデックスを使い、繰り返しの処理。
+                
                 ForEach(viewModel.playerNames.indices, id: \.self) { index in
-                    // 自分は選ばない。
                     if index != viewModel.currentIndex {
-                        // 名前と入れ替えるぼんたんを横並びに。
+                        
                         HStack {
                             Text(viewModel.playerNames[index])
                                 .font(.body)
@@ -52,8 +55,7 @@ struct RobCatRoleView: View {
             }
             .padding()
         }
-
-        // 画面遷移。
+        
         .navigationDestination(isPresented: $viewModel.isGoRobCatText) {
             RobCatTextView(viewModel: viewModel)
         }

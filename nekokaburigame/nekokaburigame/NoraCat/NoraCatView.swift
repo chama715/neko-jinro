@@ -5,16 +5,19 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
+/*
+ 他の役職同様、質素な画面。
+ 画面遷移のみ。
+ */
+
 import SwiftUI
 
 struct NoraCatView: View {
 
-    // 画面遷移のためのフラグ。
     @State private var goToImage = false
-    // RoleCheckStartViewModelを引き継ぎ。
     var viewModel: RoleCheckStartViewModel
-
     var body: some View {
+        
         VStack(spacing: 20) {
             Text("あなたの役職は・・・")
                 .font(.largeTitle)
@@ -30,7 +33,6 @@ struct NoraCatView: View {
             .cornerRadius(12)
         }
         
-        // 画面遷移。
         .navigationDestination(isPresented: $goToImage) {
             NoraCatImageView(viewModel: viewModel)
         }

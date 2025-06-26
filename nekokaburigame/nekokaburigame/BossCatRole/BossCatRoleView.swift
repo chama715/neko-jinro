@@ -5,15 +5,19 @@
 //  Created by 高橋直斗 on 2025/06/09.
 //
 
+/*
+ ボス猫が役職を見る画面。他のプレイヤーの名前と、役職を見るボタンが配置されている。
+ RoleCheckStartViewModelは引き続き受け取り、どのプレイヤーの役職を見たか、の状態を持っておく。
+ ForEach、HStackでリストを作り選択できるように。選択したら次の画面で、誰がなんだったかがわかる。
+ NavigationLink
+ */
+
 import SwiftUI
 
 struct BossCatRoleView: View {
-    //　RoleCheckStartViewModelを引き継ぎ。
     var viewModel: RoleCheckStartViewModel
-    
-    // ボス猫がどのプレイヤーを選ぶか、を保存しておく状態。
     @State private var selectedIndex: Int? = nil
-
+    
     var body: some View {
         ZStack {
             Image(.background)
@@ -36,12 +40,10 @@ struct BossCatRoleView: View {
                     .font(.title2)
                     .multilineTextAlignment(.center)
                     .padding()
-
-                // プレイヤー一覧。
+                
                 ForEach(Array(viewModel.playerNames.enumerated()), id: \.offset) { index, name in
                     if index != viewModel.currentIndex {
-
-                        // 名前と見るボタンを横並びに。
+                        
                         HStack {
                             Text(name)
                                 .font(.title3)
@@ -49,13 +51,11 @@ struct BossCatRoleView: View {
                                 .foregroundStyle(.black)
                                 .padding()
                             
-                            // 画面遷移
                             NavigationLink(
                                 destination: BossCatTextView(viewModel: viewModel),tag: index,selection: $selectedIndex) {
                                 EmptyView()
                             }
                             
-                            // ボタンを押すと、選んだプレイヤーのインデックスをViewModelに記録しておく処理を実行。
                             Button("役職を見る") {
                                 viewModel.selectedViewedIndex = index
                                 selectedIndex = index

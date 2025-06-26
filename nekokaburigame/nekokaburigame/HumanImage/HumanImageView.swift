@@ -5,16 +5,19 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
+/*
+ 人間ですという役職確認画面。人間の画像を使っているので、ロジック的に難しいとかは特にない。なぜか画像がずれてしまうので、左に40ptずらしている。
+ RoleCheckStartViewModelを受け取っているので、プレイヤー名などの情報はバッチリ。誰が人間なのかとかを保存しておいてくれる。
+ あとはシンプルに画面遷移。HumanTextへ。
+ */
 
 import SwiftUI
 
 struct HumanImageView: View {
-    // RoleCheckStartViewModelを引き継いで使わせてもらっている。
     var viewModel: RoleCheckStartViewModel
 
     var body: some View {
         ZStack {
-            // 人間用の画像。これもズレるため左右の調整。
             Image(.human)
                 .resizable()
                 .scaledToFill()
@@ -33,8 +36,7 @@ struct HumanImageView: View {
                     .font(.title)
                     .foregroundColor(.black)
                     .padding(40)
-
-                // 次の画面へ
+                
                 NavigationLink(destination: HumanTextView(viewModel: viewModel)) {
                     Text("次へ")
                         .font(.title2)

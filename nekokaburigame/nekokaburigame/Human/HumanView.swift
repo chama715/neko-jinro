@@ -5,21 +5,25 @@
 //  Created by 高橋直斗 on 2025/06/06.
 //
 
+/*
+ あなたの役職は？？とボタンしかないシンプルな画面。ただこの時点で人間と決まっている。プレイヤーにはわからないから大丈夫。
+ 画面遷移のフラグを準備、ゲームの心臓部分であるRoleCheckStartViewModelを受け取り、役職名、プレイヤー名などを共有する。
+ そのほかは難しいことはなく、シンプルに次の画面に進むのみ。
+ */
+
 import SwiftUI
 
 struct HumanView: View {
-    // 画面遷移用のフラグ。
+    
     @State private var goToImage = false
-    // RoleCheckStartViewModelを引き継いで使わせてもらっている。
     var viewModel: RoleCheckStartViewModel
-
+    
     var body: some View {
         VStack(spacing: 20) {
             Text("あなたの役職は・・・")
                 .font(.largeTitle)
                 .multilineTextAlignment(.center)
-
-            // 画面遷移。
+            
             Button("次へ") {
                 goToImage = true
             }
@@ -30,7 +34,6 @@ struct HumanView: View {
             .cornerRadius(12)
         }
         
-        // HumanViewへ画面遷移。
         .navigationDestination(isPresented: $goToImage) {
             HumanImageView(viewModel: viewModel)
         }

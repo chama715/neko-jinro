@@ -5,6 +5,12 @@
 //  Created by 高橋直斗 on 2025/06/15.
 //
 
+/*
+ 話し合いの画面。時間を設定してボタンを押すとカウントダウンで話し合い開始。時間は変更できる。
+ 時間切れ、あるいはボタンを押すと次の画面へ。
+ 
+ */
+
 import SwiftUI
 
 struct DiscussionView: View {
@@ -22,23 +28,18 @@ struct DiscussionView: View {
 
             VStack(spacing: 40) {
                 if viewModel.isTimerRunning {
-
-
+                    
                     Text(viewModel.timeString)
                         .font(.system(size: 60, weight: .bold, design: .monospaced))
                         .padding()
-
                 } else {
-
                     HStack {
-
                         Picker("分", selection: $viewModel.selectedMinutes) {
                             ForEach(0..<60) { Text("\($0)分") }
                         }
                         .frame(width: 100)
                         .clipped()
-
-
+                        
                         Picker("秒", selection: $viewModel.selectedSeconds) {
                             ForEach(0..<60) { Text("\($0)秒") }
                         }
@@ -47,10 +48,8 @@ struct DiscussionView: View {
                     }
                     .pickerStyle(.wheel)
                 }
-
-
+                
                 Button(action: {
-
                     if viewModel.isTimerRunning {
                         viewModel.endDiscussion() 
                     } else {
@@ -65,17 +64,11 @@ struct DiscussionView: View {
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }
-
             }
             .padding()
         }
         .navigationDestination(isPresented: $viewModel.isDiscussionFinished) {
-            VoteView(
-                playerNames: playerNames,
-                assignedRoles: assignedRoles,
-                path: $path 
-            )
+            VoteView(playerNames: playerNames,assignedRoles: assignedRoles,path: $path)
         }
-
     }
 }

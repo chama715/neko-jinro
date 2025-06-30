@@ -7,6 +7,7 @@
 
 /*
 この画面も難しいことはなく、画面遷移のみ。
+ NavigationLinkなので、フラグは必要なし。
  */
 
 import SwiftUI

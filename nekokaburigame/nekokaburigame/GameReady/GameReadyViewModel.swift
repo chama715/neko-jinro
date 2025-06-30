@@ -16,8 +16,8 @@ import Foundation
 @MainActor
 class GameReadyViewModel: ObservableObject {
     
-    @Published var isGameReady = false
     @Published var rolechekStartviewModel = RoleCheckStartViewModel()
+    @Published var isGameReady = false
     @Published var goToVotePhase = false
     
     var assignedRoles: [Role] {

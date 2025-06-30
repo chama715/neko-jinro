@@ -5,52 +5,42 @@
 //  Created by 高橋直斗 on 2025/06/06.
 //
 
-// どの状態はどのViewで使っているものなのかを明記したい。
+/*
+ 見た目が悪くなってしまったが、色々な状態と関数のパラダイス。
+ プレイヤーの数と名前がこれより前の画面で決まっているのでそれを引き継いだ上で、泥棒猫が誰か、ボス猫が誰かを保存し、役職確認では元々の役職を表示させるようなロジックをここに定義しておく。
+ */
 
 import Foundation
 
 @MainActor
-// ObservableObjectに準拠しているので、Publishedとかの変化をViewに通知できる。
+
 class RoleCheckStartViewModel: ObservableObject {
-
-    // プレイヤー名の配列
-    @Published var playerNames: [String] = []
-    // 今は誰？の番号
-    @Published var currentIndex = 0
-    // 画面遷移のフラグ
-    @Published var isGoRoleCheck = false
-    // 割り振られる役職の配列
-    @Published var assignedRoles: [Role] = []
-    // 泥棒猫が入れ替えた相手の番号
-    @Published var swappedPlayerIndex: Int? = nil
-    // 泥棒猫用の画面遷移のフラグ
-    @Published var isGoRobCatText = false
-    // 泥棒猫が役職を入れ替える前の相手の役職を保存。
-    @Published var swappedPlayerOriginalRole: Role? = nil
-    // ボス猫が誰の役職を見たか？
-    @Published var selectedViewedIndex: Int? = nil
-    // 泥棒猫が役職を入れ替える前の相手の役職を表示するやつ
-    @Published var originalSwappedRole: Role? = nil
-    // 元々なんの役職だったのか。
-    @Published var originalSwappedIndex: Int? = nil
-    // ボス猫が何番のインデックスなのか
-    @Published var bossCatIndex: Int? = nil
-    // 役職を入れ替える前のみんなの役職を保存。
-    @Published var originalRoles: [Role]? = nil
-    // 役職確認が終わり、次の画面遷移にいくためのフラグ。
-    @Published var isAllFinished = false
-
-    // プレイヤー名を取得するプロパティ。
+    
+    @Published var playerNames: [String] = [] // プレイヤー名の空っぽな配列。
+    @Published var currentIndex = 0 //  誰の番か？誰のターンか？何番目か？の状態。
+    @Published var isGoRoleCheck = false // 役職確認画面へ遷移するためのフラグ。
+    @Published var assignedRoles: [Role] = [] // シャッフルして割り当てられた役職一覧。
+    @Published var swappedPlayerIndex: Int? = nil // 泥棒猫が役職を入れ替えた時の役職をしまっておくところ。
+    @Published var isGoRobCatText = false // 泥棒猫専用の画面遷移のフラグ。
+    @Published var swappedPlayerOriginalRole: Role? = nil // 泥棒猫が入れ替えた役職を記録しておくところ。
+    @Published var selectedViewedIndex: Int? = nil // ボス猫が誰の役職を見たか？その番号。
+    @Published var originalSwappedRole: Role? = nil // 泥棒猫が入れ替える前の役職が何か表示するためのところ。
+    @Published var originalSwappedIndex: Int? = nil // 泥棒猫が入れ替える前の役職が何番のインデックスかを記録しておく。
+    @Published var bossCatIndex: Int? = nil // ボス猫が何番のプレイヤーなのかを記録しておくところ。
+    @Published var originalRoles: [Role]? = nil // 泥棒猫が役職を入れ替える前の役職一覧。
+    @Published var isAllFinished = false // 画面遷移のフラグ。全員の役職確認が終わったら用。
+    
+    // RoleCheckStartViewの、この人に端末を渡してください。のこの人を出すやつ。
     var currentPlayerName: String {
         playerNames.indices.contains(currentIndex) ? playerNames[currentIndex] : ""
     }
     
-    // 表示されているプレイヤーに役職を割り当てる。
+    // displayedRoleで使うためのcurrentRoleを定義。
     var currentRole: Role? {
         assignedRoles.indices.contains(currentIndex) ? assignedRoles[currentIndex] : nil
     }
     
-    // 役職表示。泥棒猫に入れ替えられている場合は、元々の役職を表示。
+    // 泥棒猫が役職を入れ替えたことを考慮した状態で、表示すべき役職を表示してくれるやつ。
     var displayedRole: Role? {
         if currentIndex == swappedPlayerIndex {
             return originalSwappedRole
@@ -59,18 +49,19 @@ class RoleCheckStartViewModel: ObservableObject {
         }
     }
     
-    // プレイヤー名を保存。インデックスをデフォに戻す。役職の配列をランダムに割り当て。ボス猫のインデックスを記録しておく。
+    // プレイヤー名を記録、インデックス配布、役職確認リセットの関数。GameReadyViewで使われるが、役職配布がされていないためここで定義。
     func startGame(with names: [String]) {
         playerNames = names
         currentIndex = 0
         isGoRoleCheck = false
-
+        
+        // 役職を定義してシャッフル。ボス猫のインデックスもここで記録。
         let roles: [Role] = [.human, .human, .noracat, .robcat, .bosscat]
         assignedRoles = roles.shuffled()
         bossCatIndex = assignedRoles.firstIndex(of: .bosscat)
     }
     
-    // 次のプレイヤーへ進めるための関数。ラストまでいったら、次の画面へ。
+    // 画面遷移のための関数。続くなら続くけど、終わりなら終わりで次の画面にいくよという感じ。
     func goToNextPlayer() {
         if currentIndex < playerNames.count - 1 {
             currentIndex += 1
@@ -81,7 +72,7 @@ class RoleCheckStartViewModel: ObservableObject {
         }
     }
 
-    // もし仮に自分が人間だった場合、もう1人は誰なのかを教えてくれる関数。
+    // もう一人の人間は誰かの関数。泥棒猫に役職を入れ替えられていたとしても、元の役職を表示するように。
     func otherHumanName() -> String {
         let rolesToUse = originalRoles ?? assignedRoles
 
@@ -89,7 +80,6 @@ class RoleCheckStartViewModel: ObservableObject {
               rolesToUse[currentIndex] == .human else {
             return ""
         }
-
         for (index, role) in rolesToUse.enumerated() {
             if role == .human && index != currentIndex {
                 return playerNames[index]
@@ -98,23 +88,20 @@ class RoleCheckStartViewModel: ObservableObject {
         return ""
     }
     
-    // 泥棒猫が役職を入れ替える時の関数。元の役職はしっかり保存しつつ、入れ替える。
+    // 泥棒猫が役職を入れ替える関数。元々の役職を保存して入れ替え、次の画面遷移へのフラグも。
     func swapRole(with index: Int) {
         let thiefIndex = currentIndex
-
         if originalRoles == nil {
             originalRoles = assignedRoles
         }
-
         swappedPlayerOriginalRole = assignedRoles[index]
         swappedPlayerIndex = index
         originalSwappedRole = assignedRoles[index]
-
         assignedRoles.swapAt(thiefIndex, index)
         isGoRobCatText = true
     }
-
-    // 元々なんの役職だったのかを知りたい時に使う関数。
+    
+    // 役職表示の関数。普通に役職を表示するけど、泥棒猫に入れ替えられた人は入れ替わる前を表示するように。
     func displayedRole(at index: Int) -> Role {
         if let original = originalRoles {
             return original[index]

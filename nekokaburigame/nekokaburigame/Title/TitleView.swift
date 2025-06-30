@@ -12,11 +12,10 @@
 
 import SwiftUI
 
-// タイトル画面の構造体。Viewプロトコルに準拠している。
 struct TitleView: View {
     
-    @Binding var path: NavigationPath
-    @StateObject private var viewModel = TitleViewModel()
+    @Binding var path: NavigationPath // ContentViewのNavigationPathを受け取り。
+    @StateObject private var viewModel = TitleViewModel() // TitleViewModelを初期化してTitleViewで持つ！
     
     var body: some View {
 

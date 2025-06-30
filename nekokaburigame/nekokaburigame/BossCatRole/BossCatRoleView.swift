@@ -9,7 +9,7 @@
  ボス猫が役職を見る画面。他のプレイヤーの名前と、役職を見るボタンが配置されている。
  RoleCheckStartViewModelは引き続き受け取り、どのプレイヤーの役職を見たか、の状態を持っておく。
  ForEach、HStackでリストを作り選択できるように。選択したら次の画面で、誰がなんだったかがわかる。
- NavigationLink
+ NavigationLinkが非推奨と出ているが、いじると色々なところでエラーがでてしまうので、動いているしまあいいか。という感じ。
  */
 
 import SwiftUI
@@ -51,8 +51,7 @@ struct BossCatRoleView: View {
                                 .foregroundStyle(.black)
                                 .padding()
                             
-                            NavigationLink(
-                                destination: BossCatTextView(viewModel: viewModel),tag: index,selection: $selectedIndex) {
+                            NavigationLink(destination: BossCatTextView(viewModel: viewModel),tag: index,selection: $selectedIndex) {
                                 EmptyView()
                             }
                             

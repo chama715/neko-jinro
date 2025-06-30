@@ -38,6 +38,7 @@ struct PlayCountView: View {
                             .foregroundColor(.black)
                     }
                     
+                    // playerCountの値が変わったら処理を行う→非同期で安全にadjustPlayerNameArray()を実行。
                     .onChange(of: viewModel.playerCount) { _, _ in
                         DispatchQueue.main.async {
                             viewModel.adjustPlayerNameArray()

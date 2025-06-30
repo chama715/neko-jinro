@@ -7,6 +7,7 @@
 
 /*
  あなたは泥棒猫だよということを知らせることと、画面遷移。
+ NavigationLinkなので、フラグはなし。
  */
 
 import SwiftUI

@@ -6,7 +6,7 @@
 //
 
 /*
- itleViewModelというクラスを定義し、ObservableObjectに準拠していることで値の変更をviewに反映させることができる。
+ itleViewModelというクラスを定義し、ObservableObjectに準拠していることで、Publishedなどの値の変更をviewに反映させることができる。
  isGameStartedの値がtrueになる関数を実行(ボタンを押す)し、画面遷移する仕組み。
  */
 

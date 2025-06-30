@@ -5,6 +5,11 @@
 //  Created by 高橋直斗 on 2025/06/15.
 //
 
+/*
+ 話し合いが終わるとこの画面になる。
+ 
+ */
+
 import SwiftUI
 
 struct VoteView: View {

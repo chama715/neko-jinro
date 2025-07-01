@@ -5,6 +5,10 @@
 //  Created by 高橋直斗 on 2025/06/15.
 //
 
+/*
+ 画面遷移のフラグ、役職の配列を定義。
+ */
+
 import Foundation
 
 @MainActor

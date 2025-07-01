@@ -7,7 +7,9 @@
 
 /*
  話し合いが終わるとこの画面になる。
- 
+ それぞれのプレイヤーが処刑するプレイヤーを選ぶ直前の画面。
+ プレイヤー、役職の各配列を定義。
+ あとは画面遷移。
  */
 
 import SwiftUI
@@ -45,11 +47,7 @@ struct VoteView: View {
                 }
             }
             .navigationDestination(isPresented: $viewModel.goToVote) {
-                VoteStartView(
-                    playerNames: playerNames,
-                    assignedRoles: assignedRoles,
-                    path: $path
-                )
+                VoteStartView(playerNames: playerNames,assignedRoles: assignedRoles,path: $path)
             }
         }
     }

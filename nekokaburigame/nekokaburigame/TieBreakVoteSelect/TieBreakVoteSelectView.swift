@@ -5,6 +5,15 @@
 //  Created by 高橋直斗 on 2025/06/20.
 //
 
+/*
+ 各プレイヤーが決選投票を行う画面。これは決選投票の対象者もやる。
+ 決戦投票対象者は誰なのか、全プレイヤー名、誰がどの役職なのか、ナビパスを受け取る。
+ 決選投票の結果を記録する配列、選択した対象プレイヤー名も保存。
+ あとは画面遷移のフラグ。
+ 投票するプレイヤーをそれぞれ表示して、リストから投票してもらう。
+ 
+ */
+
 import SwiftUI
 
 struct TieBreakVoteSelectView: View {
@@ -12,7 +21,6 @@ struct TieBreakVoteSelectView: View {
     let playerNames: [String]
     let assignedRoles: [Role]
     @Binding var path: NavigationPath
-
     @State private var currentIndex = 0
     @State private var votes: [String] = []
     @State private var selectedName: String = ""
@@ -48,10 +56,8 @@ struct TieBreakVoteSelectView: View {
 
                     Button("決定して次へ") {
                         guard !selectedName.isEmpty else { return }
-
                         votes.append(selectedName)
                         selectedName = ""
-
                         if currentIndex < playerNames.count - 1 {
                             currentIndex += 1
                         } else {
@@ -63,7 +69,6 @@ struct TieBreakVoteSelectView: View {
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(12)
-
                 } else {
                     Text("全員の投票が完了しました")
                 }
@@ -71,12 +76,7 @@ struct TieBreakVoteSelectView: View {
             .padding()
         }
         .navigationDestination(isPresented: $isGoToCheck) {
-            VoteCheckView(
-                votes: votes,
-                playerNames: playerNames,
-                assignedRoles: assignedRoles,
-                path: $path
-            )
+            VoteCheckView(votes: votes,playerNames: playerNames,assignedRoles: assignedRoles,path: $path)
         }
     }
 }

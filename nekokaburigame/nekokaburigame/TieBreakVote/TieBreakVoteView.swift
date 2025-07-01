@@ -5,6 +5,12 @@
 //  Created by 高橋直斗 on 2025/06/20.
 //
 
+/*
+ 決選投票の画面。
+ 決選投票の対象となるプレイヤー、全員の配列、全員の役職、ナビパスを定義し、決選投票画面へのフラグも。
+ 決選投票の対象のプレイヤーを表示し、ボタンを押して遷移。
+ */
+
 import SwiftUI
 
 struct TieBreakVoteView: View {
@@ -12,7 +18,6 @@ struct TieBreakVoteView: View {
     let playerNames: [String]
     let assignedRoles: [Role]
     @Binding var path: NavigationPath
-    
     @State private var isGoToVote = false
 
     var body: some View {
@@ -48,12 +53,7 @@ struct TieBreakVoteView: View {
             }
         }
         .navigationDestination(isPresented: $isGoToVote) {
-            TieBreakVoteSelectView(
-                candidates: candidates,
-                playerNames: playerNames,
-                assignedRoles: assignedRoles,
-                path: $path
-            )
+            TieBreakVoteSelectView(candidates: candidates,playerNames: playerNames,assignedRoles: assignedRoles,path: $path)
         }
     }
 }

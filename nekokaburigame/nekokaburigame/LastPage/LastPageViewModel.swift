@@ -5,9 +5,18 @@
 //  Created by 高橋直斗 on 2025/06/19.
 //
 
+/*
+ プレイヤー名の配列、振り分け役職の配列、入れ替え後の役職の配列、処刑されたプレイヤーの定数を定義。
+ 初期化時に必要なデータを受け取り、プロパティに保存。
+ あとは勝敗のロジック。人間が処刑されてれば猫チームの勝ち、逆もしかり。
+ で、各プレイヤーの名前、役職、勝敗を表示するためのやつ。
+ 
+ */
+
 import Foundation
 
 @MainActor
+
 class LastPageViewModel: ObservableObject {
     let playerNames: [String]
     let assignedRoles: [Role]
@@ -28,6 +37,7 @@ class LastPageViewModel: ObservableObject {
         }
 
         let role = assignedRoles[index]
+        
         switch role {
         case .robcat, .bosscat, .noracat:
             return "人間チームの勝利！"

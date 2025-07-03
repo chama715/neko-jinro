@@ -56,7 +56,10 @@ class RoleCheckStartViewModel: ObservableObject {
         isGoRoleCheck = false
         
         // 役職を定義してシャッフル。ボス猫のインデックスもここで記録。
-        let roles: [Role] = [.human, .human, .noracat, .robcat, .bosscat]
+        var roles: [Role] = [.human, .human, .robcat, .bosscat]
+        let numberOfPlayers = names.count
+        let numberOfNoraCats = max(1, numberOfPlayers - 4) 
+        roles += Array(repeating: .noracat, count: numberOfNoraCats)
         assignedRoles = roles.shuffled()
         bossCatIndex = assignedRoles.firstIndex(of: .bosscat)
     }

@@ -30,56 +30,69 @@ struct PlayCountView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     Text("プレイヤーの数を選んでください。")
+                        .font(.title2)
+                        .bold()
+                        .padding(.top)
                     
                     Stepper(value: $viewModel.playerCount, in: 3...10) {
-
                         Text("\(viewModel.playerCount)人")
                             .font(.title)
                             .foregroundColor(.black)
                     }
+                    .padding()
+                    .background(Color.white.opacity(0.8))
+                    .cornerRadius(12)
+                    .padding(.horizontal)
+                    .frame(maxWidth: 400)
                     
-                    // playerCountの値が変わったら処理を行う→非同期で安全にadjustPlayerNameArray()を実行。
                     .onChange(of: viewModel.playerCount) { _, _ in
                         DispatchQueue.main.async {
                             viewModel.adjustPlayerNameArray()
                         }
                     }
-                    
+
                     LazyVStack(spacing: 10) {
-                        
                         ForEach(0..<viewModel.playerCount, id: \.self) { index in
                             if index < viewModel.playerName.count {
-                                
                                 TextField("プレイヤー\(index + 1)", text: Binding(
                                     get: { viewModel.playerName[index] },
                                     set: { viewModel.playerName[index] = $0 }
                                 ))
                                 .textFieldStyle(.roundedBorder)
                                 .frame(maxWidth: .infinity)
+                                .padding(.horizontal)
                             }
                         }
                     }
-                    .frame(height: 250)
-                    .frame(width: 350)
+                    .frame(maxWidth: 400)
+                    .padding(.bottom, 20)
+
+                    Button(action: {
+                        SEManager.shared.playSE(named: "button_tap")
+                        viewModel.startGame()
+                    }) {
+                        Text("START")
+                            .font(.title2)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
+                            .padding(.horizontal)
+                    }
                 }
+                .padding()
             }
             
             .navigationDestination(isPresented: $viewModel.isGameReadyActive) {
-                GameReadyView(playerNames: viewModel.playerName,path: $path)
-            }
-            
-            Button(action: {
-                SEManager.shared.playSE(named: "button_tap")
-                viewModel.startGame()
-            }) {
-                Text("START")
-                    .font(.title2)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
-                    .padding(.horizontal)
+                GameReadyView(playerNames: viewModel.playerName, path: $path)
             }
         }
+    }
+}
+
+#Preview {
+    NavigationStack {
+        PlayCountView(path: .constant(NavigationPath()))
     }
 }

@@ -27,7 +27,7 @@ struct TitleView: View {
             
             VStack(spacing: 20) {
 
-                Text("猫被りゲーム")
+                Text("猫人狼")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 
@@ -48,6 +48,20 @@ struct TitleView: View {
                         .cornerRadius(12)
                         .padding(.horizontal)
                 }
+                
+                Button(action: {
+                    SEManager.shared.playSE(named: "button_tap")
+                    path.append(Route.rule)
+                }) {
+                    Text("ルール説明")
+                        .font(.title2)
+                        .padding()
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                }
+
             }
             .padding()
             

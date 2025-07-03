@@ -14,4 +14,7 @@ import Foundation
 enum Route: Hashable {
     case title
     case last(playerNames: [String], assignedRoles: [Role], originalRoles: [Role], executedPlayerName: String)
+    case rule
+    case announcement(playerNames: [String], assignedRoles: [Role], originalRoles: [Role], executedPlayerName: String)
 }
+

@@ -54,8 +54,15 @@ struct VoteCheckView: View {
                     let topCandidates = viewModel.mostVotedPlayers()
                     if topCandidates.count == 1 {
                         let executed = topCandidates.first!
+                        // 修正：Route.announcement に遷移
                         path.append(
-                            Route.last(playerNames: playerNames,assignedRoles: assignedRoles,originalRoles: assignedRoles,executedPlayerName: executed))
+                            Route.announcement(
+                                playerNames: playerNames,
+                                assignedRoles: assignedRoles,
+                                originalRoles: assignedRoles,
+                                executedPlayerName: executed
+                            )
+                        )
                     } else {
                         candidatesForTieBreak = topCandidates
                         isGoToTieBreak = true
@@ -70,7 +77,12 @@ struct VoteCheckView: View {
         }
 
         .navigationDestination(isPresented: $isGoToTieBreak) {
-            TieBreakVoteView(candidates: candidatesForTieBreak,playerNames: playerNames,assignedRoles: assignedRoles,path: $path)
+            TieBreakVoteView(
+                candidates: candidatesForTieBreak,
+                playerNames: playerNames,
+                assignedRoles: assignedRoles,
+                path: $path
+            )
         }
     }
 }

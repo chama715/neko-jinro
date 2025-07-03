@@ -14,6 +14,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var path = NavigationPath()
+    
     var body: some View {
         NavigationStack(path: $path) {
             TitleView(path: $path)
@@ -21,15 +22,31 @@ struct ContentView: View {
                     switch route {
                     case .title:
                         TitleView(path: $path)
-                    case .last(let playerNames, let assignedRoles, let originalRoles, let executedPlayerName):
                         
-                        let viewModel = LastPageViewModel(
+                    case .last(let playerNames, let assignedRoles, let originalRoles, let executedPlayerName):
+                        do {
+                            let viewModel = LastPageViewModel(
+                                playerNames: playerNames,
+                                assignedRoles: assignedRoles,
+                                originalRoles: originalRoles,
+                                executedPlayerName: executedPlayerName
+                            )
+                            LastPageView(viewModel: viewModel, path: $path)
+                        }
+                        
+                    case .rule:
+                        RuleView(path: $path)
+                        
+                    case .announcement(let playerNames, let assignedRoles, let originalRoles, let executedPlayerName):
+                        let viewModel = AnnouncementViewModel()
+                        AnnouncementView(
+                            executedPlayerName: executedPlayerName,
                             playerNames: playerNames,
                             assignedRoles: assignedRoles,
                             originalRoles: originalRoles,
-                            executedPlayerName: executedPlayerName
+                            viewModel: viewModel,
+                            path: $path
                         )
-                        LastPageView(viewModel: viewModel, path: $path)
                     }
                 }
         }

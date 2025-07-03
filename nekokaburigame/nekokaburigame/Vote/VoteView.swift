@@ -35,6 +35,7 @@ struct VoteView: View {
                     .padding()
                 
                 Button(action: {
+                    SEManager.shared.playSE(named: "button_tap")
                     viewModel.goToVote = true
                 }) {
                     Text("投票画面へ")

@@ -69,6 +69,7 @@ struct PlayCountView: View {
             }
             
             Button(action: {
+                SEManager.shared.playSE(named: "button_tap")
                 viewModel.startGame()
             }) {
                 Text("START")

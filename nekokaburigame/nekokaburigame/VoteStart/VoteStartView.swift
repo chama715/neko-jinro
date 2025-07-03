@@ -46,6 +46,7 @@ struct VoteStartView: View {
                 }
 
                 Button("OK") {
+                    SEManager.shared.playSE(named: "button_tap")
                     if currentIndex < playerNames.count {
                         isGoToVoteSelect = true
                     } else {

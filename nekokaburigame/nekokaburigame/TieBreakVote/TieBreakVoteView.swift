@@ -40,6 +40,7 @@ struct TieBreakVoteView: View {
                     .underline()
                 
                 Button(action: {
+                    SEManager.shared.playSE(named: "button_tap")
                     isGoToVote = true
                 }) {
                     Text("決選投票画面へ")

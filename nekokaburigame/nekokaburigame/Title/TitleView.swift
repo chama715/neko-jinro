@@ -37,6 +37,7 @@ struct TitleView: View {
                     .foregroundColor(.gray)
 
                 Button(action: {
+                    SEManager.shared.playSE(named: "button_tap")
                     viewModel.startGame()
                 }) {
                     Text("GAME START")
@@ -54,5 +55,12 @@ struct TitleView: View {
                 PlayCountView(path: $path)
             }
         }
+        .onAppear {
+            BGMManager.shared.playBGM(named: "title_bgm")
+        }
+        .onDisappear {
+            BGMManager.shared.stopBGM()
+        }
+
     }
 }

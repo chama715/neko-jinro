@@ -40,6 +40,7 @@ struct RoleCheckEndView: View {
                     .padding()
                 
                 Button(action: {
+                    SEManager.shared.playSE(named: "button_tap")
                     RoleCheckendViewModel.startGame()
                 }) {
                     Text("話し合いを開始する")

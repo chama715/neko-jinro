@@ -43,6 +43,7 @@ struct AnnouncementView: View {
                     .underline()
 
                 Button(action: {
+                    SEManager.shared.playSE(named: "button_tap")
                     isGoToLastPage = true
                 }) {
                     Text("結果発表")

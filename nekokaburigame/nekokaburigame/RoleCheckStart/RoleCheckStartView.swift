@@ -44,6 +44,7 @@ struct RoleCheckStartView: View {
                     .padding(24)
                 
                 Button(action: {
+                    SEManager.shared.playSE(named: "button_tap")
                     viewModel.isGoRoleCheck = true
                 }) {
                     Text("次へ")

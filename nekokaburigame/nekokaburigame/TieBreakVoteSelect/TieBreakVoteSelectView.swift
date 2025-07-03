@@ -55,6 +55,7 @@ struct TieBreakVoteSelectView: View {
                     }
 
                     Button("決定して次へ") {
+                        SEManager.shared.playSE(named: "button_tap")
                         guard !selectedName.isEmpty else { return }
                         votes.append(selectedName)
                         selectedName = ""

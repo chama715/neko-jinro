@@ -52,6 +52,7 @@ struct DiscussionView: View {
                 }
                 
                 Button(action: {
+                    SEManager.shared.playSE(named: "button_tap")
                     if viewModel.isTimerRunning {
                         viewModel.endDiscussion() 
                     } else {
@@ -69,6 +70,14 @@ struct DiscussionView: View {
             }
             .padding()
         }
+        
+        .onAppear {
+            BGMManager.shared.playBGM(named: "discussion_bgm")
+        }
+        .onDisappear {
+            BGMManager.shared.stopBGM()
+        }
+
         .navigationDestination(isPresented: $viewModel.isDiscussionFinished) {
             VoteView(playerNames: playerNames,assignedRoles: assignedRoles,path: $path)
         }

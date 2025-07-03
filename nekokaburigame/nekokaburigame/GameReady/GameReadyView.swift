@@ -34,6 +34,7 @@ struct GameReadyView: View {
                     .padding()
 
                 Button(action: {
+                    SEManager.shared.playSE(named: "button_tap")
                     viewModel.startGame(with: playerNames)
                 }) {
                     Text("OK")

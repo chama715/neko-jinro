@@ -50,6 +50,7 @@ struct VoteCheckView: View {
                     .padding()
 
                 Button("結果発表") {
+                    SEManager.shared.playSE(named: "button_tap")
                     let topCandidates = viewModel.mostVotedPlayers()
                     if topCandidates.count == 1 {
                         let executed = topCandidates.first!

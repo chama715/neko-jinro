@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		A3A1FDEF2E17C9DF00174C12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A382222F2DF2F5D60012D360 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A38222362DF2F5D60012D360;
+			remoteInfo = nekokaburigame;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		A38222372DF2F5D60012D360 /* nekokaburigame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nekokaburigame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3A1FDEB2E17C9DF00174C12 /* NekoninAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NekoninAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = nekokaburigame;
 			sourceTree = "<group>";
 		};
+		A3A1FDEC2E17C9DF00174C12 /* NekoninAppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NekoninAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A38222342DF2F5D60012D360 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3A1FDE82E17C9DF00174C12 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				A38222392DF2F5D60012D360 /* nekokaburigame */,
+				A3A1FDEC2E17C9DF00174C12 /* NekoninAppTests */,
 				A38222382DF2F5D60012D360 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				A38222372DF2F5D60012D360 /* nekokaburigame.app */,
+				A3A1FDEB2E17C9DF00174C12 /* NekoninAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = A38222372DF2F5D60012D360 /* nekokaburigame.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A3A1FDEA2E17C9DF00174C12 /* NekoninAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3A1FDF32E17C9DF00174C12 /* Build configuration list for PBXNativeTarget "NekoninAppTests" */;
+			buildPhases = (
+				A3A1FDE72E17C9DF00174C12 /* Sources */,
+				A3A1FDE82E17C9DF00174C12 /* Frameworks */,
+				A3A1FDE92E17C9DF00174C12 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3A1FDF02E17C9DF00174C12 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A3A1FDEC2E17C9DF00174C12 /* NekoninAppTests */,
+			);
+			name = NekoninAppTests;
+			packageProductDependencies = (
+			);
+			productName = NekoninAppTests;
+			productReference = A3A1FDEB2E17C9DF00174C12 /* NekoninAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					A38222362DF2F5D60012D360 = {
 						CreatedOnToolsVersion = 16.4;
+					};
+					A3A1FDEA2E17C9DF00174C12 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = A38222362DF2F5D60012D360;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				A38222362DF2F5D60012D360 /* nekokaburigame */,
+				A3A1FDEA2E17C9DF00174C12 /* NekoninAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A38222352DF2F5D60012D360 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3A1FDE92E17C9DF00174C12 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A3A1FDE72E17C9DF00174C12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A3A1FDF02E17C9DF00174C12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A38222362DF2F5D60012D360 /* nekokaburigame */;
+			targetProxy = A3A1FDEF2E17C9DF00174C12 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A38222402DF2F5D80012D360 /* Debug */ = {
@@ -302,6 +377,52 @@
 			};
 			name = Release;
 		};
+		A3A1FDF12E17C9DF00174C12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D4G4RQY4T6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.naoto0715charlie.NekoninAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nekokaburigame.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nekokaburigame";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		A3A1FDF22E17C9DF00174C12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D4G4RQY4T6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.naoto0715charlie.NekoninAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nekokaburigame.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nekokaburigame";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -319,6 +440,15 @@
 			buildConfigurations = (
 				A38222432DF2F5D80012D360 /* Debug */,
 				A38222442DF2F5D80012D360 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3A1FDF32E17C9DF00174C12 /* Build configuration list for PBXNativeTarget "NekoninAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3A1FDF12E17C9DF00174C12 /* Debug */,
+				A3A1FDF22E17C9DF00174C12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

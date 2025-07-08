@@ -53,6 +53,9 @@ struct TieBreakVoteView: View {
                 }
             }
         }
+        
+       
+        
         .navigationDestination(isPresented: $isGoToVote) {
             TieBreakVoteSelectView(candidates: candidates,playerNames: playerNames,assignedRoles: assignedRoles,path: $path)
         }

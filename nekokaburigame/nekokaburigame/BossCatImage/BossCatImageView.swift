@@ -45,6 +45,7 @@ struct BossCatImageView: View {
                         .padding(.horizontal)
                 }
             }
+            
         }
     }
 }

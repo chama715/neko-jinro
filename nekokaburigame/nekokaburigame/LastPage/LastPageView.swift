@@ -42,9 +42,7 @@ struct LastPageView: View {
                     HStack {
                         Text(name)
                             .bold()
-                        
                         Text(role.displayName)
-                        
                         Text(result)
                             .foregroundColor(result == "勝ち！" ? .green : .red)
                             .underline()
@@ -57,8 +55,8 @@ struct LastPageView: View {
                 
                 Button("タイトルに戻る") {
                     SEManager.shared.playSE(named: "button_tap")
+                    
                     path = NavigationPath()
-                    path.append(Route.title)
                 }
                 .font(.title2)
                 .padding()

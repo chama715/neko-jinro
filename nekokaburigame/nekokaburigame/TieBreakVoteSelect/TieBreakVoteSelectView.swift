@@ -74,6 +74,10 @@ struct TieBreakVoteSelectView: View {
                     Text("全員の投票が完了しました")
                 }
             }
+            
+        
+
+            
             .padding()
         }
         .navigationDestination(isPresented: $isGoToCheck) {

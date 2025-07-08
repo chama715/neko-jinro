@@ -70,5 +70,6 @@ struct BossCatRoleView: View {
                 }
             }
         }
+
     }
 }

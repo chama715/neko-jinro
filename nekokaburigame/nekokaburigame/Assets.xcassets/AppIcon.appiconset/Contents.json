@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "nekojinro_icon_final_clean.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -12,6 +13,7 @@
           "value" : "dark"
         }
       ],
+      "filename" : "nekojinro_icon_final_clean 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -23,6 +25,7 @@
           "value" : "tinted"
         }
       ],
+      "filename" : "nekojinro_icon_final_clean 2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

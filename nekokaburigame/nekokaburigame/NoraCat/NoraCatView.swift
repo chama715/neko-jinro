@@ -33,6 +33,9 @@ struct NoraCatView: View {
             .cornerRadius(12)
         }
         
+        
+
+        
         .navigationDestination(isPresented: $goToImage) {
             NoraCatImageView(viewModel: viewModel)
         }

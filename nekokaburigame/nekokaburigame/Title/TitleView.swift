@@ -14,11 +14,10 @@ import SwiftUI
 
 struct TitleView: View {
     
-    @Binding var path: NavigationPath // ContentViewのNavigationPathを受け取り。
-    @StateObject private var viewModel = TitleViewModel() // TitleViewModelを初期化してTitleViewで持つ！
+    @Binding var path: NavigationPath
+    @StateObject private var viewModel = TitleViewModel()
     
     var body: some View {
-
         ZStack {
             Image(.background)
                 .resizable()
@@ -38,6 +37,7 @@ struct TitleView: View {
 
                 Button(action: {
                     SEManager.shared.playSE(named: "button_tap")
+                    BGMManager.shared.stopBGM()
                     viewModel.startGame()
                 }) {
                     Text("GAME START")
@@ -51,6 +51,7 @@ struct TitleView: View {
                 
                 Button(action: {
                     SEManager.shared.playSE(named: "button_tap")
+                    
                     path.append(Route.rule)
                 }) {
                     Text("ルール説明")
@@ -64,7 +65,6 @@ struct TitleView: View {
 
             }
             .padding()
-            
             .navigationDestination(isPresented: $viewModel.isGameStarted) {
                 PlayCountView(path: $path)
             }
@@ -73,8 +73,6 @@ struct TitleView: View {
             BGMManager.shared.playBGM(named: "title_bgm")
         }
         .onDisappear {
-            BGMManager.shared.stopBGM()
         }
-
     }
 }

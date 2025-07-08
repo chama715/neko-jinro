@@ -24,7 +24,6 @@ struct BossCatTextView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
-                
                 // 選んだプレイヤーのインデックスが有効なのかをチェック。
                 if let seen = viewModel.selectedViewedIndex,
                    seen >= 0 && seen < viewModel.playerNames.count,
@@ -67,6 +66,10 @@ struct BossCatTextView: View {
                         .padding(.horizontal)
                 }
             }
+            
+           
+
+            
             .padding()
         }
     }

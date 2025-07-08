@@ -46,6 +46,10 @@ struct NoraCatImageView: View {
                         .padding(.horizontal)
                 }
             }
+            
+           
+
+            
         }
     }
 }

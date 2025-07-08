@@ -67,5 +67,9 @@ struct VoteStartView: View {
                 VoteCheckView(votes: viewModel.votes,playerNames: playerNames,assignedRoles: assignedRoles,path: $path)
             }
         }
+        
+      
+
+        
     }
 }

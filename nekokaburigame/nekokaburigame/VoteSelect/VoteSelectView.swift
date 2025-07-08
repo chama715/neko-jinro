@@ -78,6 +78,10 @@ struct VoteSelectView: View {
                 .font(.title2)
                 .padding()
             }
+            
+           
+
+            
             .padding()
         }
     }

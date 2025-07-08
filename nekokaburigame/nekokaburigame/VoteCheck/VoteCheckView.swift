@@ -74,6 +74,8 @@ struct VoteCheckView: View {
                 .foregroundColor(.white)
                 .cornerRadius(12)
             }
+          
+            
         }
 
         .navigationDestination(isPresented: $isGoToTieBreak) {

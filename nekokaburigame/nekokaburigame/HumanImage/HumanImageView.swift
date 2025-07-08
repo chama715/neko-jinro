@@ -48,5 +48,7 @@ struct HumanImageView: View {
                 }
             }
         }
+       
+
     }
 }

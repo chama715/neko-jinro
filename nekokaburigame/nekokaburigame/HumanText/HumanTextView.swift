@@ -61,6 +61,10 @@ struct HumanTextView: View {
                         .padding(.horizontal)
                 }
             }
+            
+           
+
+            
             .padding()
         }
     }

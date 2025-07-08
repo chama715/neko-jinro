@@ -51,5 +51,9 @@ struct VoteView: View {
                 VoteStartView(playerNames: playerNames,assignedRoles: assignedRoles,path: $path)
             }
         }
+        
+        
+
+        
     }
 }

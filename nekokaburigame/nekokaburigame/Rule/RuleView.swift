@@ -32,7 +32,6 @@ struct RuleView: View {
                 Button(action: {
                     SEManager.shared.playSE(named: "button_tap")
                     path = NavigationPath()
-                    path.append(Route.title)
                 }) {
                     Text("タイトルに戻る")
                         .font(.title2)
@@ -51,5 +50,6 @@ struct RuleView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
         )
+       
     }
 }

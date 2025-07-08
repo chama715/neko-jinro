@@ -53,6 +53,8 @@ struct RoleCheckEndView: View {
                 }
             }
         }
+        
+        
         .navigationDestination(isPresented: $RoleCheckendViewModel.isGameStarted) {
             DiscussionView(playerNames: playerNames,assignedRoles: viewModel.assignedRoles,path: $path)
         }

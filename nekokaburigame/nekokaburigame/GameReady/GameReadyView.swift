@@ -32,7 +32,7 @@ struct GameReadyView: View {
                     .font(.title3)
                     .bold()
                     .padding()
-
+                
                 Button(action: {
                     SEManager.shared.playSE(named: "button_tap")
                     viewModel.startGame(with: playerNames)
@@ -46,6 +46,7 @@ struct GameReadyView: View {
                         .padding(.horizontal)
                 }
             }
+                
 
             .navigationDestination(isPresented: $viewModel.isGameReady) {
                 RoleCheckStartView(path: $path,viewModel: viewModel.rolechekStartviewModel)

@@ -34,6 +34,9 @@ struct HumanView: View {
             .cornerRadius(12)
         }
         
+       
+
+        
         .navigationDestination(isPresented: $goToImage) {
             HumanImageView(viewModel: viewModel)
         }

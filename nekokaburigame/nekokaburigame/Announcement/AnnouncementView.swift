@@ -55,6 +55,9 @@ struct AnnouncementView: View {
                 }
             }
         }
+        
+       
+
         .navigationDestination(isPresented: $isGoToLastPage) {
             LastPageView(viewModel: LastPageViewModel(playerNames: playerNames,assignedRoles: assignedRoles,originalRoles: originalRoles,executedPlayerName: executedPlayerName),path: $path
             )

@@ -57,6 +57,7 @@ struct RoleCheckStartView: View {
                 }
             }
         }
+       
         
         .navigationDestination(isPresented: $viewModel.isGoRoleCheck) {
             switch viewModel.displayedRole {

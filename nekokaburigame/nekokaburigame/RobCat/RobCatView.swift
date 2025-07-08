@@ -31,6 +31,10 @@ struct RobCatView: View {
             .cornerRadius(12)
         }
         
+       
+
+        
+        
         .navigationDestination(isPresented: $goToImage) {
             RobCatImageView(viewModel: viewModel)
         }

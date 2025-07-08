@@ -52,6 +52,9 @@ struct NoraCatTextView: View {
                         .padding(.horizontal)
                 }
             }
+            
+           
+            
             .padding()
         }
     }

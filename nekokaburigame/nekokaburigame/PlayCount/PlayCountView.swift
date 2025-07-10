@@ -34,7 +34,7 @@ struct PlayCountView: View {
                         .bold()
                         .padding(.top)
                     
-                    Stepper(value: $viewModel.playerCount, in: 3...10) {
+                    Stepper(value: $viewModel.playerCount, in: 5...10) {
                         Text("\(viewModel.playerCount)人")
                             .font(.title)
                             .foregroundColor(.black)
@@ -44,7 +44,6 @@ struct PlayCountView: View {
                     .cornerRadius(12)
                     .padding(.horizontal)
                     .frame(maxWidth: 400)
-                    
                     .onChange(of: viewModel.playerCount) { _, _ in
                         DispatchQueue.main.async {
                             viewModel.adjustPlayerNameArray()
@@ -83,7 +82,6 @@ struct PlayCountView: View {
                 }
                 .padding()
             }
-            
             .navigationDestination(isPresented: $viewModel.isGameReadyActive) {
                 GameReadyView(playerNames: viewModel.playerName, path: $path)
             }

@@ -65,6 +65,7 @@ struct TitleView: View {
 
             }
             .padding()
+            
             .navigationDestination(isPresented: $viewModel.isGameStarted) {
                 PlayCountView(path: $path)
             }

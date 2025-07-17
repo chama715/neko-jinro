@@ -28,13 +28,13 @@ struct LastPageView: View {
             
             VStack(spacing: 16) {
                 Text("結果発表")
-                    .font(.largeTitle)
+                    .font(.custom("PixelMplus12-Regular", size: 32))
                     .bold()
                     .underline()
                     .padding(.top)
                 
                 Text(viewModel.winnerText)
-                    .font(.title)
+                    .font(.custom("PixelMplus12-Regular", size: 28))
                     .foregroundColor(.red)
                     .padding(.bottom, 20)
                 
@@ -47,7 +47,7 @@ struct LastPageView: View {
                             .foregroundColor(result == "勝ち！" ? .green : .red)
                             .underline()
                     }
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 20))
                     .padding(.horizontal, 32)
                 }
                 
@@ -58,7 +58,7 @@ struct LastPageView: View {
                     
                     path = NavigationPath()
                 }
-                .font(.title2)
+                .font(.custom("PixelMplus12-Regular", size: 24))
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(.white)

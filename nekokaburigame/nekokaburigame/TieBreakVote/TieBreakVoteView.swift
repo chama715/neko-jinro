@@ -29,12 +29,12 @@ struct TieBreakVoteView: View {
             
             VStack(spacing: 20) {
                 Text("同票数のプレイヤーがいたため\n決選投票を行います。")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 20))
                     .bold()
                     .padding()
                 
                 Text("決選投票を行うのは\n" + candidates.joined(separator: " と ") + " です。")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 20))
                     .bold()
                     .padding()
                     .underline()
@@ -44,7 +44,7 @@ struct TieBreakVoteView: View {
                     isGoToVote = true
                 }) {
                     Text("決選投票画面へ")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)

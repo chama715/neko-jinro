@@ -30,7 +30,7 @@ struct VoteView: View {
             VStack(spacing: 20) {
                 
                 Text("話し合いが終了しました。\n各自、処刑するプレイヤーを選択し\n次のプレイヤーに端末を渡してください。")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 20))
                     .bold()
                     .padding()
                 
@@ -39,7 +39,7 @@ struct VoteView: View {
                     viewModel.goToVote = true
                 }) {
                     Text("投票画面へ")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)

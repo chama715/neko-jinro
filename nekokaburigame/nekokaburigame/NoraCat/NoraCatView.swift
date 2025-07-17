@@ -20,13 +20,13 @@ struct NoraCatView: View {
         
         VStack(spacing: 20) {
             Text("あなたの役職は・・・")
-                .font(.largeTitle)
+                .font(.custom("PixelMplus12-Regular", size: 28))
                 .multilineTextAlignment(.center)
 
             Button("次へ") {
                 goToImage = true
             }
-            .font(.title2)
+            .font(.custom("PixelMplus12-Regular", size: 28))
             .padding()
             .background(Color.blue)
             .foregroundColor(.white)

@@ -26,18 +26,18 @@ struct BossCatRoleView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 20) {
-                Text("あなたは、地域を支配している\nボス猫です。\nどんな情報でも知っている最強の猫。")
-                    .font(.title2)
+                Text("あなたは、地域を支配している\nボス猫です。\nどんな情報でも知っている\n最強の猫。")
+                    .font(.custom("PixelMplus12-Regular", size: 24))
                     .multilineTextAlignment(.center)
                     .padding()
 
                 Text("ボス猫は、他のプレイヤーの役職を\n1人だけみることができます。")
-                    .font(.title2)
+                    .font(.custom("PixelMplus12-Regular", size: 24))
                     .multilineTextAlignment(.center)
                     .padding()
 
                 Text("役職を見たいプレイヤーを\n選択してください。")
-                    .font(.title2)
+                    .font(.custom("PixelMplus12-Regular", size: 24))
                     .multilineTextAlignment(.center)
                     .padding()
                 
@@ -46,8 +46,7 @@ struct BossCatRoleView: View {
                         
                         HStack {
                             Text(name)
-                                .font(.title3)
-                                .bold()
+                                .font(.custom("PixelMplus12-Regular", size: 20))
                                 .foregroundStyle(.black)
                                 .padding()
                             
@@ -59,6 +58,7 @@ struct BossCatRoleView: View {
                                 viewModel.selectedViewedIndex = index
                                 selectedIndex = index
                             }
+                            .font(.custom("PixelMplus12-Regular", size: 16))
                             .padding(.horizontal)
                             .padding(.vertical, 6)
                             .background(Color.blue)

@@ -30,21 +30,21 @@ struct HumanTextView: View {
                 let displayed = viewModel.displayedRole(at: viewModel.currentIndex)
                 
                 Text("あなたの役職は「\(displayed.displayName)」です。")
-                    .font(.title2)
+                    .font(.custom("PixelMplus12-Regular", size: 28))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding()
                 
                 if !viewModel.otherHumanName().isEmpty {
                     Text("もう1人の人間は \(viewModel.otherHumanName()) です。")
-                        .font(.title3)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .padding()
                 }
                 
                 Text("あなたともう1人の人間が\nどちらも投票されなかった場合\n人間チームの勝利となります。")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 24))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding()
@@ -53,7 +53,7 @@ struct HumanTextView: View {
                     viewModel.goToNextPlayer()
                 }) {
                     Text("次のプレイヤーへ")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding()
                         .background(Color.green)
                         .foregroundColor(.white)

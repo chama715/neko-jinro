@@ -31,13 +31,13 @@ struct RobCatTextView: View {
                    let originalRole = viewModel.swappedPlayerOriginalRole {
                     
                     Text("役職を入れ替えた相手は\n\(viewModel.playerNames[swappedIndex]) です。")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 28))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .padding()
                     
                     Text("\(viewModel.playerNames[swappedIndex]) の役職は \(originalRole.displayName) でした。")
-                        .font(.title3)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -51,7 +51,7 @@ struct RobCatTextView: View {
                     viewModel.goToNextPlayer()
                 }) {
                     Text("次のプレイヤーへ")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding()
                         .background(Color.green)
                         .foregroundColor(.white)

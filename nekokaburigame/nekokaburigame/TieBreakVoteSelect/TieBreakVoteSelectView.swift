@@ -36,7 +36,7 @@ struct TieBreakVoteSelectView: View {
             VStack(spacing: 20) {
                 if currentIndex < playerNames.count {
                     Text("\(playerNames[currentIndex]) さん\n投票してください")
-                        .font(.title3)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .bold()
                         .multilineTextAlignment(.center)
 
@@ -45,7 +45,7 @@ struct TieBreakVoteSelectView: View {
                             selectedName = name
                         }) {
                             Text(name)
-                                .font(.title2)
+                                .font(.custom("PixelMplus12-Regular", size: 20))
                                 .padding()
                                 .frame(width: 350)
                                 .background(selectedName == name ? Color.green : Color.white)
@@ -65,7 +65,7 @@ struct TieBreakVoteSelectView: View {
                             isGoToCheck = true
                         }
                     }
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 24))
                     .padding()
                     .background(Color.blue)
                     .foregroundColor(.white)

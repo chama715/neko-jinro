@@ -29,13 +29,13 @@ struct NoraCatTextView: View {
                 let role = viewModel.displayedRole(at: viewModel.currentIndex)
                 
                 Text("あなたの役職は「\(role.displayName)」です。")
-                    .font(.title2)
+                    .font(.custom("PixelMplus12-Regular", size: 24))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding()
 
                 Text("野良猫には特別なアクションはありません。\n話し合いで人間を見つけ出しましょう！")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 18))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .padding()
@@ -44,7 +44,7 @@ struct NoraCatTextView: View {
                     viewModel.goToNextPlayer()
                 }) {
                     Text("次のプレイヤーへ")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding()
                         .background(Color.green)
                         .foregroundColor(.white)

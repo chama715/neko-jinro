@@ -14,18 +14,21 @@ struct RuleView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("🐾 猫人狼\nルール説明")
-                    .font(.largeTitle)
-                    .bold()
+                    .font(.custom("PixelMplus12-Regular", size: 32))
                     .underline()
                     .padding(.bottom, 10)
 
                 Text("【ゲーム概要】\nプレイヤーに役職をランダムに割り当て、人間チームと猫チームに分かれて戦います。話し合いと投票を通じて、相手チームを処刑し勝利を目指しましょう。")
+                    .font(.custom("PixelMplus12-Regular", size: 20))
 
                 Text("【役職】\n・人間：猫チームを見つけ出し、処刑されないようにする。\n・野良猫：通常の猫メンバー。\n・泥棒猫：夜に他のプレイヤーと役職を入れ替えることができる。\n・ボス猫：夜に他のプレイヤーの役職を1人だけ確認できる。")
+                    .font(.custom("PixelMplus12-Regular", size: 20))
 
                 Text("【勝利条件】\n・人間チームの勝利：猫チームの誰かが処刑されること。\n・猫チームの勝利：人間チームの誰かが処刑されること。")
+                    .font(.custom("PixelMplus12-Regular", size: 20))
 
                 Text("【操作方法】\n1. タイトル画面で『GAME START』を押す\n2. プレイヤー人数・名前を設定\n3. 夜に役職を確認し、必要なアクションを行う\n4. 話し合い後に投票し処刑するプレイヤーを決定\n5. 処刑結果を確認し、勝敗を確認")
+                    .font(.custom("PixelMplus12-Regular", size: 20))
 
                 Spacer().frame(height: 30)
 
@@ -34,7 +37,7 @@ struct RuleView: View {
                     path = NavigationPath()
                 }) {
                     Text("タイトルに戻る")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 32))
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color.blue)

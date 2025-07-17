@@ -32,12 +32,12 @@ struct AnnouncementView: View {
 
             VStack(spacing: 20) {
                 Text("投票の結果、以下のプレイヤーが\n処刑されることになりました。")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 24))
                     .bold()
                     .padding()
 
                 Text(executedPlayerName)
-                    .font(.title)
+                    .font(.custom("PixelMplus12-Regular", size: 28))
                     .bold()
                     .padding()
                     .underline()
@@ -47,7 +47,7 @@ struct AnnouncementView: View {
                     isGoToLastPage = true
                 }) {
                     Text("結果発表")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
@@ -64,3 +64,4 @@ struct AnnouncementView: View {
         }
     }
 }
+

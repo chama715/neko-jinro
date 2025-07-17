@@ -28,15 +28,15 @@ struct RoleCheckEndView: View {
             
             VStack {
                 Text("夜が明けました。\nこれから全員で話し合いを行います。")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 20))
                     .padding()
                 
                 Text("制限時間内に話し合いを行い\n処刑するプレイヤーを1人選んでください。")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 20))
                     .padding()
                 
                 Text("猫チームの誰かが処刑された場合\n人間チームの勝利となり\n人間チームの誰かが処刑された場合は\n猫チームの勝利となります。")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 20))
                     .padding()
                 
                 Button(action: {
@@ -44,7 +44,7 @@ struct RoleCheckEndView: View {
                     RoleCheckendViewModel.startGame()
                 }) {
                     Text("話し合いを開始する")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 28))
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)

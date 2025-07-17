@@ -60,7 +60,7 @@ struct DiscussionView: View {
                     }
                 }) {
                     Text(viewModel.isTimerRunning ? "話し合いを終了" : "話し合いを開始")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding()
                         .frame(width: 220)
                         .background(viewModel.isTimerRunning ? Color.red : Color.blue)

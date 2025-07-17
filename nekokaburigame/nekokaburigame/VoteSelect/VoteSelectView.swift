@@ -37,7 +37,7 @@ struct VoteSelectView: View {
             VStack(spacing: 20) {
                 if currentVoterIndex < playerNames.count {
                     Text("あなたは \(playerNames[currentVoterIndex]) ですね。\n処刑するプレイヤーを選んでください。")
-                        .font(.title3)
+                        .font(.custom("PixelMplus12-Regular", size: 20))
                         .multilineTextAlignment(.center)
                         .padding()
                 } else {
@@ -75,7 +75,7 @@ struct VoteSelectView: View {
                         }
                     }
                 }
-                .font(.title2)
+                .font(.custom("PixelMplus12-Regular", size: 24))
                 .padding()
             }
             

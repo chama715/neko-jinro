@@ -26,9 +26,8 @@ struct TitleView: View {
             
             VStack(spacing: 20) {
 
-                Text("猫人狼")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                Text("ねこ人狼")
+                    .font(.custom("PixelMplus12-Regular", size: 48))
                 
                 Image(systemName: "pawprint.fill")
                     .resizable()
@@ -41,7 +40,7 @@ struct TitleView: View {
                     viewModel.startGame()
                 }) {
                     Text("GAME START")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 32))
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
@@ -55,7 +54,7 @@ struct TitleView: View {
                     path.append(Route.rule)
                 }) {
                     Text("ルール説明")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 32))
                         .padding()
                         .background(Color.green)
                         .foregroundColor(.white)

@@ -26,20 +26,20 @@ struct RobCatImageView: View {
 
             VStack(spacing: 20) {
                 Text("あなたの役職は…")
-                    .font(.title)
+                    .font(.custom("PixelMplus12-Regular", size: 28))
                     .foregroundColor(.black)
                     .padding(40)
                 
                 Spacer()
                 
                 Text("泥棒猫です。")
-                    .font(.title)
+                    .font(.custom("PixelMplus12-Regular", size: 28))
                     .foregroundColor(.black)
                     .padding(40)
                 
                 NavigationLink(destination: RobCatRoleView(viewModel: viewModel)) {
                     Text("次へ")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)

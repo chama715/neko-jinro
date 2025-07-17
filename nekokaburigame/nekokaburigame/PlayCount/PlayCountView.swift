@@ -30,13 +30,12 @@ struct PlayCountView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     Text("プレイヤーの数を選んでください。")
-                        .font(.title2)
-                        .bold()
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding(.top)
                     
                     Stepper(value: $viewModel.playerCount, in: 5...10) {
                         Text("\(viewModel.playerCount)人")
-                            .font(.title)
+                            .font(.custom("PixelMplus12-Regular", size: 28))
                             .foregroundColor(.black)
                     }
                     .padding()
@@ -71,7 +70,7 @@ struct PlayCountView: View {
                         viewModel.startGame()
                     }) {
                         Text("START")
-                            .font(.title2)
+                            .font(.custom("PixelMplus12-Regular", size: 28))
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(Color.blue)

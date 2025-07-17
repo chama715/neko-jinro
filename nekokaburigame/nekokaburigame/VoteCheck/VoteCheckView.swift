@@ -45,7 +45,7 @@ struct VoteCheckView: View {
 
             VStack(spacing: 20) {
                 Text("全員の投票が完了しました。\n次のページにて、処刑されたプレイヤーを\n発表します。")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 20))
                     .bold()
                     .padding()
 
@@ -54,7 +54,6 @@ struct VoteCheckView: View {
                     let topCandidates = viewModel.mostVotedPlayers()
                     if topCandidates.count == 1 {
                         let executed = topCandidates.first!
-                        // 修正：Route.announcement に遷移
                         path.append(
                             Route.announcement(
                                 playerNames: playerNames,
@@ -68,7 +67,7 @@ struct VoteCheckView: View {
                         isGoToTieBreak = true
                     }
                 }
-                .font(.title2)
+                .font(.custom("PixelMplus12-Regular", size: 24))
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(.white)

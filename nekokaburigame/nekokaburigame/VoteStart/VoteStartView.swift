@@ -34,13 +34,13 @@ struct VoteStartView: View {
 
             VStack(spacing: 20) {
                 Text("このプレイヤーに端末を渡してください。")
-                    .font(.title3)
+                    .font(.custom("PixelMplus12-Regular", size: 20))
                     .bold()
                     .foregroundStyle(.white)
 
                 if currentIndex < playerNames.count {
                     Text(playerNames[currentIndex])
-                        .font(.title)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .bold()
                         .foregroundStyle(.white)
                 }
@@ -53,7 +53,7 @@ struct VoteStartView: View {
                         isGoToVoteCheck = true
                     }
                 }
-                .font(.title2)
+                .font(.custom("PixelMplus12-Regular", size: 28))
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(.white)

@@ -33,12 +33,12 @@ struct RoleCheckStartView: View {
             
             VStack(spacing: 20) {
                 Text("このプレイヤーに\n端末を渡してください。")
-                    .font(.title)
+                    .font(.custom("PixelMplus12-Regular", size: 28))
                     .foregroundStyle(.white)
                     .frame(maxHeight: 450, alignment: .top)
                 
                 Text(viewModel.currentPlayerName)
-                    .font(.largeTitle)
+                    .font(.custom("PixelMplus12-Regular", size: 32))
                     .foregroundStyle(.white)
                     .bold()
                     .padding(24)
@@ -48,7 +48,7 @@ struct RoleCheckStartView: View {
                     viewModel.isGoRoleCheck = true
                 }) {
                     Text("次へ")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)

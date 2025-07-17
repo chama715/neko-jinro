@@ -33,7 +33,7 @@ struct BossCatTextView: View {
                     let roleToShow = viewModel.displayedRole(at: seen)
                     
                     Text("\(viewModel.playerNames[seen])の役職は「\(roleToShow.displayName)」でした。")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -42,7 +42,7 @@ struct BossCatTextView: View {
                 else if viewModel.currentIndex == viewModel.swappedPlayerIndex,
                         let original = viewModel.originalSwappedRole {
                     Text("あなたの役職は「\(original.displayName)」です。")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -58,7 +58,7 @@ struct BossCatTextView: View {
                     viewModel.goToNextPlayer()
                 }) {
                     Text("次のプレイヤーへ")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 24))
                         .padding()
                         .background(Color.green)
                         .foregroundColor(.white)

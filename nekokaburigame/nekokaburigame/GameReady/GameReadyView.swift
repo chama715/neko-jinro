@@ -29,8 +29,7 @@ struct GameReadyView: View {
             VStack(spacing: 20) {
                 
                 Text("夜がきました。\n各自役職を確認し\n夜のアクションを行ってください。")
-                    .font(.title3)
-                    .bold()
+                    .font(.custom("PixelMplus12-Regular", size: 24))
                     .padding()
                 
                 Button(action: {
@@ -38,7 +37,7 @@ struct GameReadyView: View {
                     viewModel.startGame(with: playerNames)
                 }) {
                     Text("OK")
-                        .font(.title2)
+                        .font(.custom("PixelMplus12-Regular", size: 28))
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)

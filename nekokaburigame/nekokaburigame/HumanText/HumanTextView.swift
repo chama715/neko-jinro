@@ -5,14 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
-/*
- プレイヤーが人間だった時、もう一人は誰なのかを確認する画面。
- 引き続きRoleCheckStartViewModelを受け取っている。
- 今表示すべき役職(入れ替え前、なければ普通に)を取得して表示する。そしてそれをはめ込んであなたの役職は〜〜と表示させる。
- そしてもう1人の人間をViewModelから教えてもらって、表示させる。
- そして次のプレイヤーへ、画面遷移。
- */
-
 import SwiftUI
 
 struct HumanTextView: View {
@@ -61,10 +53,6 @@ struct HumanTextView: View {
                         .padding(.horizontal)
                 }
             }
-            
-           
-
-            
             .padding()
         }
     }

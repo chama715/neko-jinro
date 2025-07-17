@@ -5,12 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
-/*
-前の画面で役職を入れ替えた相手が誰だったかを表示。
- その入れ替えた相手がなんの役職だったかも表示。
- 確認を終えたら次の画面へ。
- */
-
 import SwiftUI
 
 struct RobCatTextView: View {
@@ -59,10 +53,6 @@ struct RobCatTextView: View {
                         .padding(.horizontal)
                 }
             }
-            
-           
-
-            
             .padding()
         }
     }

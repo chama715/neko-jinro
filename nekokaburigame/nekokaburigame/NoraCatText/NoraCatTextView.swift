@@ -5,12 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
-/*
- あなたは野良猫だよということを知らせる画面。
- let roleは泥棒猫に入れ替えられたことを考慮して、入れ替え前の役職をきちんと表示させるための定数。
-用が済んでボタンを押せば、画面が戻る。
- */
-
 import SwiftUI
 
 struct NoraCatTextView: View {
@@ -52,9 +46,6 @@ struct NoraCatTextView: View {
                         .padding(.horizontal)
                 }
             }
-            
-           
-            
             .padding()
         }
     }

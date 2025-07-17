@@ -4,12 +4,6 @@
 //
 //  Created by 高橋直斗 on 2025/06/07.
 //
-
-/*
- 他の役職同様、質素な画面。
- 画面遷移のみ。
- */
-
 import SwiftUI
 
 struct NoraCatView: View {
@@ -32,10 +26,6 @@ struct NoraCatView: View {
             .foregroundColor(.white)
             .cornerRadius(12)
         }
-        
-        
-
-        
         .navigationDestination(isPresented: $goToImage) {
             NoraCatImageView(viewModel: viewModel)
         }

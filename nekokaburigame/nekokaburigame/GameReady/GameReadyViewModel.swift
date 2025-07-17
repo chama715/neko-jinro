@@ -5,12 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/06.
 //
 
-/*
- 画面遷移用のフラグ2つと、RoleCheckStartViewModelのインスタンスを生成。
- 外部からアクセス可能な役職一覧のプロパティを定義。
- rolechekStartviewModelのstartGameを実行する関数。
- */
-
 import Foundation
 
 @MainActor

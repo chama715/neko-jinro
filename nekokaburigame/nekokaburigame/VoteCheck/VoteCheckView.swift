@@ -5,16 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/18.
 //
 
-/*
- 全員の投票を終えた画面。
- 次の画面で処刑されるプレイヤーを発表する。
- 役職一覧の配列、プレイヤー名の配列、投票結果の配列、ナビパス、viewModel渡しを定義。
- 画面遷移のフラグも定義。票がだぶった場合、決選投票をするかもしれないので、画面遷移は2つに分かれるためフラグも2つ。
- 処刑されるプレイヤーの状態も定義。
- 外部から役職、プレイヤー名、ナビパスなどを受け取るイニシャライザを定義。
- ボタンを押すと最多得票数を獲得したプレイヤーが吊し上げられ、それが1人だった場合は次の画面でそれを表示。2人以上いた場合は決選投票へ遷移。
- */
-
 import SwiftUI
 
 struct VoteCheckView: View {
@@ -27,7 +17,7 @@ struct VoteCheckView: View {
     @State private var isGoToTieBreak = false
     @State private var executedPlayerName: String = ""
     @State private var candidatesForTieBreak: [String] = []
-
+    
     init(votes: [String], playerNames: [String], assignedRoles: [Role], path: Binding<NavigationPath>) {
         self.votes = votes
         self.playerNames = playerNames
@@ -35,20 +25,20 @@ struct VoteCheckView: View {
         self._path = path
         _viewModel = StateObject(wrappedValue: VoteCheckViewModel(votes: votes))
     }
-
+    
     var body: some View {
         ZStack {
             Image(.background)
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
-
+            
             VStack(spacing: 20) {
                 Text("全員の投票が完了しました。\n次のページにて、処刑されたプレイヤーを\n発表します。")
                     .font(.custom("PixelMplus12-Regular", size: 20))
                     .bold()
                     .padding()
-
+                
                 Button("結果発表") {
                     SEManager.shared.playSE(named: "button_tap")
                     let topCandidates = viewModel.mostVotedPlayers()
@@ -73,10 +63,8 @@ struct VoteCheckView: View {
                 .foregroundColor(.white)
                 .cornerRadius(12)
             }
-          
-            
         }
-
+        
         .navigationDestination(isPresented: $isGoToTieBreak) {
             TieBreakVoteView(
                 candidates: candidatesForTieBreak,

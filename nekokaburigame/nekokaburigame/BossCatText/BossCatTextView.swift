@@ -5,11 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
-/*
- ボス猫が選択したプレイヤーの役職をみられる画面。
- ボス猫が見たプレイヤーを表示。泥棒猫が入れ替えたのを踏まえての処理。
- */
-
 import SwiftUI
 
 struct BossCatTextView: View {
@@ -66,10 +61,6 @@ struct BossCatTextView: View {
                         .padding(.horizontal)
                 }
             }
-            
-           
-
-            
             .padding()
         }
     }

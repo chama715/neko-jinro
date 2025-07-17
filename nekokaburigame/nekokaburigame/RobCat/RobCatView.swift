@@ -5,10 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
-/*
- 泥棒猫だからといって難しいことはなく、ここと次の画面はシンプル。
- */
-
 import SwiftUI
 
 struct RobCatView: View {
@@ -30,11 +26,6 @@ struct RobCatView: View {
             .foregroundColor(.white)
             .cornerRadius(12)
         }
-        
-       
-
-        
-        
         .navigationDestination(isPresented: $goToImage) {
             RobCatImageView(viewModel: viewModel)
         }

@@ -5,13 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/06.
 //
 
-/*
- ゲーム開始前の画面。
- プレイヤーごとに役職を確認してもらう画面。
- 前の画面で作成したプレイヤー名の配列を引き継ぎするプロパティ、ViewModelのプロパティ、タイトル戻りのためのプロパティを定義。
- ボタンを押すと、各プレイヤー用の役職確認画面に遷移。全員確認が終わったら、話し合いの画面へ推移。
- */
-
 import SwiftUI
 
 struct GameReadyView: View {
@@ -45,8 +38,6 @@ struct GameReadyView: View {
                         .padding(.horizontal)
                 }
             }
-                
-
             .navigationDestination(isPresented: $viewModel.isGameReady) {
                 RoleCheckStartView(path: $path,viewModel: viewModel.rolechekStartviewModel)
             }

@@ -5,11 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
-/*
- あなたは泥棒猫だよということを知らせることと、画面遷移。
- NavigationLinkなので、フラグはなし。
- */
-
 import SwiftUI
 
 struct RobCatImageView: View {
@@ -48,8 +43,5 @@ struct RobCatImageView: View {
                 }
             }
         }
-        
-        
-        
     }
 }

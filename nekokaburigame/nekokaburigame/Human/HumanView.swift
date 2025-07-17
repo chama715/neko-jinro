@@ -5,12 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/06.
 //
 
-/*
- あなたの役職は？？とボタンしかないシンプルな画面。ただこの時点で人間と決まっている。プレイヤーにはわからないから大丈夫。
- 画面遷移のフラグを準備、ゲームの心臓部分であるRoleCheckStartViewModelを受け取り、役職名、プレイヤー名などを共有する。
- そのほかは難しいことはなく、シンプルに次の画面に進むのみ。
- */
-
 import SwiftUI
 
 struct HumanView: View {
@@ -33,10 +27,6 @@ struct HumanView: View {
             .foregroundColor(.white)
             .cornerRadius(12)
         }
-        
-       
-
-        
         .navigationDestination(isPresented: $goToImage) {
             HumanImageView(viewModel: viewModel)
         }

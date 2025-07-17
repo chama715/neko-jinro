@@ -25,8 +25,7 @@ class BGMManager {
             print("BGM再生エラー: \(error)")
         }
     }
-    
-    
+
     func stopBGM() {
             audioPlayer?.stop()
         }

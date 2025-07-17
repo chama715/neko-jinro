@@ -5,10 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
-/*
- 人間と同じ。特にロジック的に難しいところはない。次が少しややこしい。
- */
-
 import SwiftUI
 
 struct BossCatImageView: View {

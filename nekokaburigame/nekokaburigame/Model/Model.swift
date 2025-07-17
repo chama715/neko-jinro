@@ -5,10 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
-/*
- 役職専用ファイル！列挙型。
- */
-
 import Foundation
 
 enum Role: String, CaseIterable {

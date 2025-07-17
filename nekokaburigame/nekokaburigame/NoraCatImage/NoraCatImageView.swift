@@ -5,11 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/07.
 //
 
-/*
-この画面も難しいことはなく、画面遷移のみ。
- NavigationLinkなので、フラグは必要なし。
- */
-
 import SwiftUI
 
 struct NoraCatImageView: View {
@@ -46,10 +41,6 @@ struct NoraCatImageView: View {
                         .padding(.horizontal)
                 }
             }
-            
-           
-
-            
         }
     }
 }

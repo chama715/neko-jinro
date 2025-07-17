@@ -5,13 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/18.
 //
 
-/*
- 前の画面で投票した結果がここで発表され、処刑される人がわかる。
- 処刑されることになったプレイヤー名、全てのプレイヤー名配列、割り当てられた役職配列、入れ替え前の役職の定数を定義。
- ViewModel、ナビパス、画面遷移のフラグを定義。
-
- */
-
 import SwiftUI
 
 struct AnnouncementView: View {
@@ -55,9 +48,6 @@ struct AnnouncementView: View {
                 }
             }
         }
-        
-       
-
         .navigationDestination(isPresented: $isGoToLastPage) {
             LastPageView(viewModel: LastPageViewModel(playerNames: playerNames,assignedRoles: assignedRoles,originalRoles: originalRoles,executedPlayerName: executedPlayerName),path: $path
             )

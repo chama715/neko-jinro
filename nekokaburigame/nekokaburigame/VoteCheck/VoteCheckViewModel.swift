@@ -5,11 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/18.
 //
 
-/*
- 投票結果を受け取って、誰が1番票を集めたのかを特定するロジック、2人以上ならやり直し(決選投票)と教えるロジックを記してある。
- 1人だけ処刑するパターンの関数と、同率で並んだ人がいた場合の関数。
- */
-
 import Foundation
 
 @MainActor
@@ -32,6 +27,4 @@ class VoteCheckViewModel: ObservableObject {
         let maxVotes = voteCounts.values.max() ?? 0
         return voteCounts.filter { $0.value == maxVotes }.map { $0.key }
     }
-
 }
-

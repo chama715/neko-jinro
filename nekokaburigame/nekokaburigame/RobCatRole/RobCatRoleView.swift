@@ -5,12 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/09.
 //
 
-/*
- 泥棒猫が役職を入れ替える画面。
- ForEachとHStackでプレイヤー名とボタンのリストを作成。
- 入れ替えるボタンを押すと、ViewModelのswapRoleが発動。役職を入れ替え、保存しておいてくれる。
- */
-
 import SwiftUI
 
 struct RobCatRoleView: View {
@@ -55,10 +49,6 @@ struct RobCatRoleView: View {
                     }
                 }
             }
-            
-            
-
-            
             .padding()
         }
         

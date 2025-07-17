@@ -5,12 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/15.
 //
 
-/*
- 役職の確認が終了し、これから話し合いをはじめるよ！という画面。
- ボタンを押すと関数が実行され、startGameがtrueになり画面遷移。
- DiscussionViewにプレイヤー名、人数、ナビパスを渡す。
- */
-
 import SwiftUI
 
 struct RoleCheckEndView: View {
@@ -53,8 +47,6 @@ struct RoleCheckEndView: View {
                 }
             }
         }
-        
-        
         .navigationDestination(isPresented: $RoleCheckendViewModel.isGameStarted) {
             DiscussionView(playerNames: playerNames,assignedRoles: viewModel.assignedRoles,path: $path)
         }

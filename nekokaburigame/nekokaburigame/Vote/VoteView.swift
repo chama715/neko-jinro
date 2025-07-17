@@ -5,13 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/15.
 //
 
-/*
- 話し合いが終わるとこの画面になる。
- それぞれのプレイヤーが処刑するプレイヤーを選ぶ直前の画面。
- プレイヤー、役職の各配列を定義。
- あとは画面遷移。
- */
-
 import SwiftUI
 
 struct VoteView: View {
@@ -19,7 +12,7 @@ struct VoteView: View {
     let assignedRoles: [Role]
     @StateObject private var viewModel = VoteViewModel()
     @Binding var path: NavigationPath
-
+    
     var body: some View {
         ZStack {
             Image(.background)
@@ -51,9 +44,5 @@ struct VoteView: View {
                 VoteStartView(playerNames: playerNames,assignedRoles: assignedRoles,path: $path)
             }
         }
-        
-        
-
-        
     }
 }

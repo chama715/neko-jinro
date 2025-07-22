@@ -5,11 +5,6 @@
 //  Created by 高橋直斗 on 2025/06/06.
 //
 
-/*
- 1番最初の画面。必要なスキルは画面遷移くらいだが、ここから全てがはじまる。
- タイトル、肉球ともに変更したいと思っている。可能ならまさきの案も聞いてみたい。
- */
-
 import SwiftUI
 
 struct TitleView: View {
@@ -50,7 +45,6 @@ struct TitleView: View {
                 
                 Button(action: {
                     SEManager.shared.playSE(named: "button_tap")
-                    
                     path.append(Route.rule)
                 }) {
                     Text("ルール説明")
@@ -61,7 +55,6 @@ struct TitleView: View {
                         .cornerRadius(12)
                         .padding(.horizontal)
                 }
-
             }
             .padding()
             

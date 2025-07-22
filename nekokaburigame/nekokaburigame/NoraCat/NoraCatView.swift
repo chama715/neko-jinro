@@ -26,6 +26,7 @@ struct NoraCatView: View {
             .foregroundColor(.white)
             .cornerRadius(12)
         }
+        
         .navigationDestination(isPresented: $goToImage) {
             NoraCatImageView(viewModel: viewModel)
         }

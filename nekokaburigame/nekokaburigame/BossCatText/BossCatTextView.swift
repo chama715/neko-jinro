@@ -19,12 +19,11 @@ struct BossCatTextView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 30) {
-                // 選んだプレイヤーのインデックスが有効なのかをチェック。
+
                 if let seen = viewModel.selectedViewedIndex,
                    seen >= 0 && seen < viewModel.playerNames.count,
                    viewModel.currentIndex == viewModel.bossCatIndex {
-                    
-                    // 選択したプレイヤーの役職がなんなのか
+
                     let roleToShow = viewModel.displayedRole(at: seen)
                     
                     Text("\(viewModel.playerNames[seen])の役職は「\(roleToShow.displayName)」でした。")

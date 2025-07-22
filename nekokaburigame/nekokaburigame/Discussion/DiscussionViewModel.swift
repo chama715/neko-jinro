@@ -17,6 +17,7 @@ class DiscussionViewModel: ObservableObject {
     @Published var isDiscussionFinished = false
     
     var timer: Timer?
+    
     var timeString: String {
         String(format: "%02d:%02d", remainingTime / 60, remainingTime % 60)
     }
